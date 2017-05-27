@@ -13,3 +13,91 @@
  *= require_tree .
  *= require_self
  */
+
+ *{
+   font-family: Gotham,gotham,Verdana,sans-serif;
+ }
+
+
+#header{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 12px;
+  /*height: 50px;*/
+}
+#top-bar{
+  height: 50px;
+  vertical-align: top;
+}
+
+#main-logo{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  /*top: 0px;
+  left: 20px;*/
+}
+
+ ul{
+   padding: 0px;
+   vertical-align: top;
+   list-style: none;
+   display: inline-block;
+ }
+
+ li{
+   vertical-align: top;
+   display: inline-block;
+   padding: 0px 8px;
+ }
+
+ #session-nav-items{
+   float: right;
+ }
+
+ .icon{
+   width: 16px;
+   height: 16px;
+ }
+
+#main-centered-section{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background-color: lightblue;
+}
+
+#search-wrapper{
+  display: inline-block;
+  width: 610px;
+}
+.search-row{
+  margin-bottom: 12px;
+}
+.search-row h1{
+  margin: 0px;
+}
+.search-row input{
+  width: 100%;
+  display: inline-block;
+  padding:17px 115px 19px 20px;
+  border: 0px;
+  border-radius: 8px;
+  font-size: 21px;
+}
+#search-button{
+  float: right;
+  position: relative;
+  top: -52px;
+  right: 8px;
+  width: 102px;
+  height: 44px;
+  padding: 0px 12px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: blue;
+  border: 0px;
+  color: white;
+  font-size: 16px;
+}
