@@ -5,9 +5,13 @@ one:
   last_name: MyString
   email: MyString
   password_digest: <%= BCrypt::Password.create('secret') %>
+  phone_number: MyString
+  agent: false
 
 two:
   first_name: MyString
   last_name: MyString
   email: MyString
   password_digest: <%= BCrypt::Password.create('secret') %>
+  phone_number: MyString
+  agent: false
