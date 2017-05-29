@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :favorites
   has_many :properties
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   # EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
   # validates :first_name, :last_name, presence: true, length: { in: 1..20 }

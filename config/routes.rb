@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'users/new'
+  get 'users/show/:id' => 'users#show'
+  post 'users/create'=> 'users#create'
 
   get 'front_end_testing/index'
 
