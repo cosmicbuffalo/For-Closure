@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'maps/index'
+
   get 'users/new'
 
   get 'front_end_testing/index'

@@ -6,6 +6,7 @@ class CreateProperties < ActiveRecord::Migration
       t.float :bathroom
       t.integer :zipcode
       t.decimal :price
+      t.integer :square_feet
       t.string :unit
       t.boolean :rent
       t.text :description
