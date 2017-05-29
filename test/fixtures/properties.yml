@@ -12,7 +12,7 @@ one:
   longitude: 1.5
   latitude: 1.5
   user_id: 
-  type_id: 
+  home_type_id: 
 
 two:
   address: MyString
@@ -26,4 +26,4 @@ two:
   longitude: 1.5
   latitude: 1.5
   user_id: 
-  type_id: 
+  home_type_id: 
