@@ -13,7 +13,7 @@ class CreateProperties < ActiveRecord::Migration
       t.float :longitude
       t.float :latitude
       t.references :user, index: true, foreign_key: true
-      t.references :type, index: true, foreign_key: true
+      t.references :home_type, index: true, foreign_key: true
 
       t.timestamps null: false
     end
