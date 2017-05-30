@@ -1,4 +1,5 @@
 class MapsController < ApplicationController
+
   def index
     # set these sessions to the proper geolocations
     session[:latitude] = 41.896862899999995

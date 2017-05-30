@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require materialize
  */
 
  *{
@@ -21,6 +22,9 @@
    margin: 0px;
  }
 
+.error-message{
+  color: red;
+}
 
 #header{
   width: 100%;
