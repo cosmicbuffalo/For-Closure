@@ -1,0 +1,139 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ *{
+   font-family: Gotham,gotham,Verdana,sans-serif;
+ }
+ body{
+   margin: 0px;
+ }
+
+
+#header{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 12px;
+  position: absolute;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  min-width: 980px;
+  /*height: 50px;*/
+}
+#top-bar{
+  height: 50px;
+  vertical-align: top;
+}
+
+#main-logo{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  background-color: blue;
+  /*top: 0px;
+  left: 20px;*/
+}
+
+ ul{
+   padding: 0px;
+   vertical-align: top;
+   list-style: none;
+   display: inline-block;
+ }
+
+ li{
+   vertical-align: top;
+   display: inline-block;
+   padding: 0px 8px;
+ }
+
+ #session-nav-items{
+   float: right;
+ }
+
+ .icon{
+   width: 16px;
+   height: 16px;
+ }
+
+#main-centered-section{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  /*background-color: lightblue;*/
+  background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(buy_background_still.jpg);
+  background-size: cover;
+  height: 600px;
+}
+
+#search-wrapper{
+  display: inline-block;
+  width: 610px;
+  position: absolute;
+  top: 165px;
+  left: 50%;
+  margin-left: -305px;
+}
+.search-row{
+  margin-bottom: 12px;
+}
+.search-row h1{
+  margin-top: 0px;
+  margin-bottom: 37px;
+  font-weight: 500;
+  font-size: 50px;
+  color: white;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.search-row input{
+  width: 100%;
+  display: inline-block;
+  padding:17px 115px 19px 20px;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 21px;
+  margin-top: 22px;
+}
+#search-button{
+  float: right;
+  position: relative;
+  top: -52px;
+  right: 8px;
+  width: 102px;
+  height: 44px;
+  padding: 0px 12px;
+  border-radius: 5px;
+  background-color: blue;
+  border: 0px;
+
+}
+button{
+  box-sizing: border-box;
+  color: white;
+  font-size: 16px;
+}
+
+.search-option{
+  width: 25%;
+  border: 1px solid white;
+  float:left;
+  font-size: 17px;
+  background-color: rgba(0,0,0,.5);
+  padding: 11px 0px 12px 0px;
+}
+.search-option.selected{
+  background-color: rgba(0,116,228,.75);
+}
