@@ -11,17 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529161512) do
+ActiveRecord::Schema.define(version: 20170530155831) do
+
 
   create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
     t.integer  "property_id"
-    t.integer  "hometype_id"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "categories", ["hometype_id"], name: "index_categories_on_hometype_id"
-  add_index "categories", ["property_id"], name: "index_categories_on_property_id"
+  add_index "categorizations", ["property_id"], name: "index_categorizations_on_property_id"
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,12 +38,6 @@ ActiveRecord::Schema.define(version: 20170529161512) do
 
   add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
-
-  create_table "home_types", force: :cascade do |t|
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "properties", force: :cascade do |t|
     t.string   "address"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170529161512) do
     t.string   "password_digest"
     t.string   "phone_number"
     t.boolean  "agent"
+    t.boolean  "landlord"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
