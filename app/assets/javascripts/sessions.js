@@ -3,6 +3,10 @@ $(document).ready(function(){
 
   $('li.tab').on('click', 'a', function(){
 
+    if ($(this).hasClass('active')){
+      return
+    }
+
     var new_action = $(this).attr('change-to')
 
     $('#user-modal form').attr('action', new_action)
@@ -12,6 +16,8 @@ $(document).ready(function(){
     } else {
       $('#user-form-submit-button').text('Submit')
     }
+    $('#user-modal-div input[type="checkbox"]').attr('checked', false)
+    $('#professional-info-div').hide();
 
 
   })
