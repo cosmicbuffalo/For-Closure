@@ -15,80 +15,88 @@
     </style>
     <div id="map"></div>
     <script>
+
+
+
+
+
+
+
+
       var map;
       function initMap() {
-          //<%= count = 0 %>
-            <% @homes.each do |home|%>
-                
-                var uluru<%=count%> = {lat: <%=home.latitude%>, lng: <%=home.longitude%>};
-                //<%= count +=1 %>
-            <% end %>
+    
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
-                center: uluru0
+                center: { lat: <%= session[:latitude]%>, lng: <%= session[:longitude]%> }
                 
             });
-            var iconBase = new google.maps.MarkerImage( "<%= asset_path( 'home_icon.svg' ) %>",    null, /* size is determined at runtime */
-    null, /* origin is 0,0 */
-    null, /* anchor is bottom center of the scaled image */
-    new google.maps.Size(25, 25)
-);  
+            var iconBase = new google.maps.MarkerImage( "<%= asset_path( 'home_icon.svg' ) %>",    
+                        null, /* size is determined at runtime */
+                        null, /* origin is 0,0 */
+                        null, /* anchor is bottom center of the scaled image */
+                        new google.maps.Size(25, 25)
+                    );  
             
-            
-            var iconHover =  new google.maps.MarkerImage( "<%= asset_path( 'home_icon.svg' ) %>",    null, /* size is determined at runtime */
-    null, /* origin is 0,0 */
-    null, /* anchor is bottom center of the scaled image */
-    new google.maps.Size(25, 25)
-);  
            
 
             //<%= count = 0 %>
+           
             <% @homes.each do |home|%>
-                var marker = new google.maps.Marker({
-                position: uluru<%=count%>,
+                 var location<%=count%> = {lat: <%=home.latitude%>, lng: <%=home.longitude%>};
+                var marker<%= count%> = new google.maps.Marker({
+                position: location<%=count%>,
                 map: map,
-                icon: iconHover
-                //<%= count +=1 %>
+                icon: iconBase
+            });
+            
+           //Opens info window
+            marker<%= count%>.addListener('mousemove', function() { 
+                infowindow<%= count%>.open(map, marker<%= count%>);
             });
 
+            // Closes info window
+            marker<%= count%>.addListener('mouseout', function() { 
+                infowindow<%= count%>.close();
+            });
 
+            google.maps.event.addListener(marker<%= count%>, 'click', function() {
+                console.log("marker<%= count%>")
+                $('#modal1').modal('open');
+            });
+
+            var contentString<%= count%>= "<p><b><%= home.address%></b></p><%= home.description%>bd. <%= home.bathroom%>ba";
+             var infowindow<%= count%> = new google.maps.InfoWindow({
+                content: contentString<%= count%>,
+                
+            });
+            // <%= count +=1%>
             
             <% end %>
-            marker.addListener('mousemove', function() {
-                map.setZoom(16);
-                map.setCenter(marker.getPosition());
-                infowindow.open(map, marker);
-                icon: 
-            });
-
-            var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large sandstone rock formation in the southern part of the '+
-            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-            'south west of the nearest large town, Alice Springs; 450&#160;km '+
-            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-            'Aboriginal people of the area. It has many springs, waterholes, '+
-            'rock caves and ancient paintings. Uluru is listed as a World '+
-            'Heritage Site.</p>'+
-            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-            '(last visited June 22, 2009).</p>'+
-            '</div>'+
-            '</div>';
-             var infowindow = new google.maps.InfoWindow({
-                content: contentString,
-                maxWidth: 200
-            });
-
             
             }
+
+           // locations = []
+           // <% @homes.each do |home|%>
+            //    locations.push([<%=home.latitude%>,<%=home.longitude%>])
+           // <% end %>
+            //console.log(locations)%>
+    
+
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw&callback=initMap" type="text/javascript"></script>
+
+\
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+  </div>
+
+    
 
     
     
