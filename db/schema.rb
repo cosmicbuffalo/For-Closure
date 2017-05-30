@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529180149) do
+ActiveRecord::Schema.define(version: 20170529222211) do
 
   create_table "categories", force: :cascade do |t|
     t.integer  "property_id"
@@ -39,21 +39,13 @@ ActiveRecord::Schema.define(version: 20170529180149) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "images", force: :cascade do |t|
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
-
   create_table "properties", force: :cascade do |t|
     t.string   "address"
     t.integer  "bedroom"
     t.float    "bathroom"
     t.integer  "zipcode"
     t.decimal  "price"
+    t.integer  "square_feet"
     t.string   "unit"
     t.boolean  "rent"
     t.text     "description"
@@ -75,8 +67,12 @@ ActiveRecord::Schema.define(version: 20170529180149) do
     t.string   "password_digest"
     t.string   "phone_number"
     t.boolean  "agent"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end

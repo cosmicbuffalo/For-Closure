@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-
+  resources :users
+  get 'maps/index'
   get 'users/new'
   get 'users/show/:id' => 'users#show'
   post 'users/create'=> 'users#create'
 
   get 'front_end_testing/index'
-
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
