@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   get 'maps/index'
 
   get 'users/new' => 'users#new'
@@ -48,7 +49,6 @@ Rails.application.routes.draw do
   get 'properties/:property_id/edit' => 'properties#edit'
 
   patch 'properties/:property_id' => 'properties#update'
-
 
 
 

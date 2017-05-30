@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  def new
+    @user = User.new
+  end
+
   def create
 
     @user = User.new(user_params)
@@ -9,6 +14,10 @@ class UsersController < ApplicationController
 
     render partial: 'sign_in_chunk.html.erb'
 
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private
