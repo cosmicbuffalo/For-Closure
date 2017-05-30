@@ -7,8 +7,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.string :phone_number
       t.boolean :agent
-
+      t.boolean :landlord
       t.timestamps null: false
+      
     end
   end
 end

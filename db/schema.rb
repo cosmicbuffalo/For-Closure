@@ -11,17 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527220035) do
+ActiveRecord::Schema.define(version: 20170530155831) do
 
   create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
     t.integer  "property_id"
-    t.integer  "hometype_id"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "categories", ["hometype_id"], name: "index_categories_on_hometype_id"
-  add_index "categories", ["property_id"], name: "index_categories_on_property_id"
+  add_index "categorizations", ["property_id"], name: "index_categorizations_on_property_id"
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,12 +37,6 @@ ActiveRecord::Schema.define(version: 20170527220035) do
 
   add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
-
-  create_table "home_types", force: :cascade do |t|
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "properties", force: :cascade do |t|
     t.string   "address"
@@ -52,12 +51,12 @@ ActiveRecord::Schema.define(version: 20170527220035) do
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "user_id"
-    t.integer  "type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "home_type_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "properties", ["type_id"], name: "index_properties_on_type_id"
+  add_index "properties", ["home_type_id"], name: "index_properties_on_home_type_id"
   add_index "properties", ["user_id"], name: "index_properties_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170527220035) do
     t.string   "password_digest"
     t.string   "phone_number"
     t.boolean  "agent"
+    t.boolean  "landlord"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
