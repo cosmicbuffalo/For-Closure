@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530155831) do
+ActiveRecord::Schema.define(version: 20170531162740) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170530155831) do
     t.boolean  "landlord"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "zipcode"
   end
 
 end

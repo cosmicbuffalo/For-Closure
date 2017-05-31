@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
 
+
+  
+
   $('li.tab').on('click', 'a', function(){
 
     if ($(this).hasClass('active')){
@@ -24,16 +27,17 @@ $(document).ready(function(){
 
   $('#user-modal-div').on('click', '#user-form-submit-button', function(e){
     e.preventDefault();
-    if ($('#user-modal-div form').attr('action') == '/sessions'){
-      getLocation();
-    }
+    getLocation();
+
 
   })
 
   $('#user-modal-div').on('submit', 'form', function(e){
-    console.log($(this))
+    // console.log($(this))
     e.preventDefault();
-
+    // console.log("form submit event")
+    // console.log("posting to ", $(this).attr('action'))
+    // console.log("data: ", $(this).serialize())
     $.post({
       url:$(this).attr('action'),
       data:$(this).serialize(),
@@ -41,8 +45,21 @@ $(document).ready(function(){
         console.log(res)
 
         if (res.result == 'failure'){
+          var data = {"loc":'login'}
+          if (res.loc == 'register'){
+            data["loc"] = 'register'
+            console.log($('#special-user-checkbox'))
+            if ($('#special-user-checkbox').is(':checked')){
+              console.log("box is checked")
+              data["professional_info"] = true
+            } else {
+              console.log("box is not checked")
+            }
+          }
+          console.log(data)
           $.get({
             url:'/users/get_user_modal',
+            data: data,
             success:function(res){
               // console.log(res)
               $('#user-modal-div').html(res)

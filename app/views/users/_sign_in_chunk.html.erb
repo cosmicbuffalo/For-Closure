@@ -12,8 +12,14 @@
     <input type="hidden" name="latitude" value="">
     <input type="hidden" name="longitude" value="">
     <div class="form-group">
+      <% if @register %>
+      <input class="form-control form-toggle hidden" type="text" name="login[email]" value="" placeholder="Enter email">
+      <input class="form-control form-toggle" type="text" name="user[email]" value="" placeholder="Enter email">
+      <% else %>
       <input class="form-control form-toggle" type="text" name="login[email]" value="" placeholder="Enter email">
       <input class="form-control form-toggle hidden" type="text" name="user[email]" value="" placeholder="Enter email">
+      <% end %>
+
       <div class="error-message-div">
         <% if flash[:email_errors]%>
           <% flash[:email_errors].each do |error| %>
@@ -23,8 +29,13 @@
       </div>
     </div>
     <div class="form-group">
-      <input class="form-control form-toggle" type="password" name="login[password]" value="" placeholder="Enter password">
-      <input class="form-control form-toggle hidden" type="password" name="user[password]" value="" placeholder="Create password">
+      <% if @register %>
+        <input class="form-control form-toggle hidden" type="password" name="login[password]" value="" placeholder="Enter password">
+        <input class="form-control form-toggle" type="password" name="user[password]" value="" placeholder="Create password">
+      <% else %>
+        <input class="form-control form-toggle" type="password" name="login[password]" value="" placeholder="Enter password">
+        <input class="form-control form-toggle hidden" type="password" name="user[password]" value="" placeholder="Create password">
+      <% end %>
       <div class="error-message-div">
         <% if flash[:password_errors] %>
           <% flash[:password_errors].each do |error| %>
@@ -33,16 +44,36 @@
         <% end %>
       </div>
     </div>
-    <div class="form-group form-toggle hidden">
-      <input id="special-user-checkbox" type="checkbox" name="landlord-agent" value="true">
-      I am a landlord or industry professional
-    </div>
-    <div id="professional-info-div" class="form-group hidden">
+    <% if @register %>
+      <% if @professional_info %>
+        <div class="form-group form-toggle">
+          <input id="special-user-checkbox" type="checkbox" name="user[landlord_agent]" value="true" checked>
+          I am a landlord or industry professional
+        </div>
+        <div id="professional-info-div" class="form-group">
+      <% else %>
+        <div class="form-group form-toggle">
+          <input id="special-user-checkbox" type="checkbox" name="user[landlord_agent]" value="true">
+          I am a landlord or industry professional
+        </div>
+        <div id="professional-info-div" class="form-group hidden">
+      <% end %>
+
+
+
+    <% else %>
+      <div class="form-group form-toggle hidden">
+        <input id="special-user-checkbox" type="checkbox" name="user[landlord_agent]" value="true">
+        I am a landlord or industry professional
+      </div>
+      <div id="professional-info-div" class="form-group hidden">
+    <% end %>
+
       <h5>Professional Information</h5>
-      <select class="" name="category">
+      <select class="" name="user[category]">
         <option value="">Select your category</option>
         <option value="agent">Real Estate Agent/Broker</option>
-        <option value="value">Landlord</option>
+        <option value="landlord">Landlord</option>
       </select>
       <div class="form-group">
         <input type="text" name="user[first_name]" value="" placeholder="First name">
