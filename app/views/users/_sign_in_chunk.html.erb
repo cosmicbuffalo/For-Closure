@@ -1,0 +1,77 @@
+<div id="user-modal">
+  <a href="#"><img class="icon" src="" alt="X-icon"></a>
+  <h5>Welcome to 4-Closure</h5>
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a href="#" change-to="/sessions">Sign in</a></li>
+      <li class="tab"><a href="#" change-to="/users">New account</a></li>
+    </ul>
+  </div>
+  <form class="" action="/sessions" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="latitude" value="">
+    <input type="hidden" name="longitude" value="">
+    <div class="form-group">
+      <input class="form-control form-toggle" type="text" name="login[email]" value="" placeholder="Enter email">
+      <input class="form-control form-toggle hidden" type="text" name="user[email]" value="" placeholder="Enter email">
+      <div class="error-message-div">
+        <% if flash[:email_errors]%>
+          <% flash[:email_errors].each do |error| %>
+            <span class="error-message"><%= error %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <input class="form-control form-toggle" type="password" name="login[password]" value="" placeholder="Enter password">
+      <input class="form-control form-toggle hidden" type="password" name="user[password]" value="" placeholder="Create password">
+      <div class="error-message-div">
+        <% if flash[:password_errors] %>
+          <% flash[:password_errors].each do |error| %>
+            <span class="error-message"><%= error %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group form-toggle hidden">
+      <input id="special-user-checkbox" type="checkbox" name="landlord-agent" value="true">
+      I am a landlord or industry professional
+    </div>
+    <div id="professional-info-div" class="form-group hidden">
+      <h5>Professional Information</h5>
+      <select class="" name="category">
+        <option value="">Select your category</option>
+        <option value="agent">Real Estate Agent/Broker</option>
+        <option value="value">Landlord</option>
+      </select>
+      <div class="form-group">
+        <input type="text" name="user[first_name]" value="" placeholder="First name">
+        <input type="text" name="user[last_name]" value="" placeholder="Last name">
+      </div>
+      <div class="form-group">
+        <input type="text" name="user[zipcode]" value="" placeholder="Zip">
+      </div>
+      <div class="form-group">
+        <input type="number" maxlength="3" name="user[phone1]" value="" placeholder="555">
+        <input type="number" maxlength="3" name="user[phone2]" value="" placeholder="555">
+        <input type="number" maxlength="4" name="user[phone3]" value="" placeholder="5555">
+      </div>
+    </div>
+    <div class="form-group">
+      <button id="user-form-submit-button" type="submit">Sign in</button>
+      <a href="#">Forgot your password?</a>
+    </div>
+    <div class="error-message-div">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+          <span class="error-message"><%= error %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </form>
+  <div id="alternate-connect">
+    Or connect with:
+    <img class="connect-button" src="" alt="Facebook logo">
+    <img class="connect-button" src="" alt="Google logo">
+  </div>
+</div>

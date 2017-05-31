@@ -1,14 +1,59 @@
 Rails.application.routes.draw do
 
+  
   get 'maps/index'
   
   get'maps/query' => 'maps#query'
 
   post 'maps/info' => 'maps#info'
 
-  get 'users/new'
+  get 'users/new' => 'users#new'
 
   get 'front_end_testing/index'
+
+
+
+
+
+  get 'home' => 'sessions#index'
+
+  get 'home/login' => 'sessions#new'
+
+  post 'sessions' => 'sessions#create'
+
+
+
+
+  post 'users' => 'users#create'
+
+  get 'users/get_user_modal' => 'users#get_user_modal'
+
+  get 'home/register' => 'users#new'
+
+  get 'users/:user_id' => 'users#show'
+
+
+
+  post 'listings/search' => 'listings#search'
+
+  get 'listings' => 'listings#index'
+
+  get 'listings/home' => 'listings#index'
+
+  post 'listings/filter' => 'listings#filter'
+
+
+
+  get 'properties/:property_id' => 'properties#show'
+
+  get 'properties/new' => 'properties#new'
+
+  post 'properties' => 'properties#create'
+
+  get 'properties/:property_id/edit' => 'properties#edit'
+
+  patch 'properties/:property_id' => 'properties#update'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

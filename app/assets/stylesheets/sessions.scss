@@ -1,0 +1,50 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#user-modal{
+  $width: 448px;
+  width: $width;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin-left: -$width/2;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+input.form-control{
+  width: 100%;
+}
+
+li.tab a{
+  color: blue !important;
+}
+
+div.indicator{
+  background-color: blue !important;
+}
+
+.hidden{
+  display: none;
+}
+
+input[type="checkbox"]{
+  position: static !important;
+  opacity: 1 !important;
+}
+
+select{
+  display: inline-block !important;
+}
+
+input{
+  display: inline-block;
+  &[name='user[phone1]'], &[name='user[phone2]']{
+    width: 80px;
+  }
+  &[name='user[phone3]']{
+    width: 90px;
+  }
+}
