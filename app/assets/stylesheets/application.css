@@ -29,8 +29,9 @@
 #header{
   width: 100%;
   box-sizing: border-box;
-  padding: 0px 12px;
+  padding: 0px 20px;
   position: absolute;
+  top: 0px;
   background-color: white;
   border-bottom: 1px solid lightgray;
   min-width: 980px;
@@ -140,4 +141,9 @@ button{
 }
 .search-option.selected{
   background-color: rgba(0,116,228,.75);
+}
+
+input{
+  padding-left: 10px !important;
+  box-sizing: border-box !important;
 }

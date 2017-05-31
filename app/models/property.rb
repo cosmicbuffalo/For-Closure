@@ -1,5 +1,6 @@
 class Property < ActiveRecord::Base
   belongs_to :user
+  belongs_to :home_type
   has_many :categorizations
   has_many :categories, through: :categorizations
 

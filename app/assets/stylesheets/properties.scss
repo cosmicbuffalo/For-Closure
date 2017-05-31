@@ -1,3 +1,45 @@
 // Place all the styles related to the Properties controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#top-spacer{
+  height: 100px;
+}
+
+#layout-wrapper{
+  padding: 24px 20px 0px;
+}
+
+#content-wrapper{
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.listing-chunk{
+  border-bottom: 1px solid gray;
+}
+.column{
+
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  vertical-align: top;
+
+  &.left-column{
+    // padding-left: 10px;
+    padding-right: 20px;
+  }
+  &.right-column{
+    padding-left: 20px;
+    width: 49%;
+    margin-left: 4px;
+    // padding-right: 10px;
+  }
+
+  input, select{
+    display: block;
+    width: 100%;
+  }
+
+}

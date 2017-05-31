@@ -50,9 +50,9 @@ class UsersController < ApplicationController
         password: raw[:password],
         password_confirmation: raw[:password]
       }
-      puts raw["landlord_agent"].inspect
-      if raw["landlord_agent"] == 'true'
-        puts 'landlord_agent is true'
+      # puts raw["landlord_agent"].inspect
+      if raw[:landlord_agent] == 'true'
+        # puts 'landlord_agent is true'
         user_params[:first_name] = raw[:first_name]
         user_params[:last_name] = raw[:last_name]
         user_params[:phone_number] = raw[:phone1].to_s + "-" + raw[:phone2].to_s + "-" + raw[:phone3].to_s

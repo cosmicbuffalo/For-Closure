@@ -1,3 +1,77 @@
 // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#main-background-image{
+  max-width: 1280px;
+  height: 470px;
+  background-image: url(seller-landing-background.png);
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  margin-top: 100px;
+  // padding: 0px 20px;
+}
+
+#angle-border-container{
+  display: inline-block;
+  margin-top: 255px;
+  height: 65px;
+  padding: 0px 20px;
+  color:white;
+  background-color: #1b5098;
+}
+
+#main-form-div{
+  padding: 0px 20px;
+  background-color: rgba(0,116,228,.9);
+  min-height: 150px;
+  color: white;
+
+  ul{
+    background-color: rgba(0,0,0,0.0);
+    border-bottom: 1px solid white;
+    margin-bottom: 16px;
+  }
+  form{
+
+    #wrap-chunk{
+      display: inline-block;
+      width: 385px;
+    }
+
+    input, select{
+      color: black;
+      
+      background-color: white !important;
+      display: inline-block !important;
+      margin-right: 10px;
+      margin-bottom: 12px;
+      width: 90px;
+      &[name='property[address]']{
+        width: 460px;
+      }
+      &[name='property[unit]']{
+        width: 145px;
+      }
+      &[name='property[city]']{
+        width: 170px;
+      }
+      &[name='property[state]']{
+        width: 75px;
+      }
+      &[name='property[zipcode]']{
+        width: 130px;
+      }
+
+    }
+    a{
+      text-decoration: underline;
+      color: white;
+    }
+  }
+  p{
+    margin: 0px;
+  }
+}

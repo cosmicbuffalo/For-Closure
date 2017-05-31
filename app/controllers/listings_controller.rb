@@ -7,4 +7,10 @@ class ListingsController < ApplicationController
 
   def filter
   end
+
+  def new
+
+  end
+
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531162740) do
+ActiveRecord::Schema.define(version: 20170531212023) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20170531162740) do
   add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
+  create_table "home_types", force: :cascade do |t|
+    t.string   "home_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string   "address"
     t.integer  "bedroom"
@@ -51,10 +57,12 @@ ActiveRecord::Schema.define(version: 20170531162740) do
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "home_type_id"
   end
 
+  add_index "properties", ["home_type_id"], name: "index_properties_on_home_type_id"
   add_index "properties", ["user_id"], name: "index_properties_on_user_id"
 
   create_table "users", force: :cascade do |t|

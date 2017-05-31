@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  
+
   get 'maps/index'
-  
+
   get'maps/query' => 'maps#query'
 
   post 'maps/info' => 'maps#info'
@@ -42,11 +42,14 @@ Rails.application.routes.draw do
 
   post 'listings/filter' => 'listings#filter'
 
+  get 'listings/new' => 'listings#new'
 
 
-  get 'properties/:property_id' => 'properties#show'
+  post 'properties/new' => 'properties#start_listing'
 
   get 'properties/new' => 'properties#new'
+
+  get 'properties/:property_id' => 'properties#show'
 
   post 'properties' => 'properties#create'
 
