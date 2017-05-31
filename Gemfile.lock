@@ -57,6 +57,10 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     geocoder (1.4.4)
+    geokit (1.11.0)
+    geokit-rails (2.2.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hirb (0.7.3)
@@ -161,6 +165,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   geocoder
+  geokit-rails
   hirb
   jbuilder (~> 2.0)
   jquery-rails

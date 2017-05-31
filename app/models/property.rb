@@ -20,5 +20,6 @@ class Property < ActiveRecord::Base
   has_many :owners , class_name: 'User'
   geocoded_by :address
   after_validation :geocode
+  acts_as_mappable :lat_column_name => :latitude, :lng_column_name => :longitude
 
 end

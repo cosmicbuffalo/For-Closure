@@ -1,6 +1,56 @@
 // Place all the styles related to the Maps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#map {
-        height: 100%;
+   #map {
+        height: 725px;
+        width: 70%;
       }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height:100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+
+.modal { 
+  width: 60% !important ; 
+  max-height: 90% !important;
+}
+
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu img {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+div.scrollmenu .material-placeholder{
+  margin: 0px !important;
+  padding: 0px !important;
+  display: inline-block !important;
+}
+
+#modal1{
+  #address-banner{
+    width:40%;
+  }
+  #address-details{
+    width:40%;
+  }
+  #address-description{
+    width:40%;
+  }
+
+  #buyer-info{
+    position: absolute;
+    margin-left:40%;
+  }
+
+}

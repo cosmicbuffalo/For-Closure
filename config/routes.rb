@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   
   get 'maps/index'
+  
+  get'maps/query' => 'maps#query'
+
+  post 'maps/info' => 'maps#info'
 
   get 'users/new' => 'users#new'
 
