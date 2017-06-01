@@ -2,9 +2,8 @@ class MapsController < ApplicationController
   layout 'maps.html.erb'
   def index
     # set these sessions to the proper geolocations
-    session[:latitude] = 41.896862899999995
-    session[:longitude] = -87.6344093
-  
+    puts session[:latitude]
+    puts session[:longitude]
   end
 
 

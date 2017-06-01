@@ -2,8 +2,7 @@ $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('#modal1').modal();
   $('.materialboxed').materialbox();
-
-
+  console.log(($('#hiddenDiv').attr("latitude")))
 
 });
 
@@ -15,14 +14,17 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: { lat: 41.896862899999995, lng: -87.6344093 }
-    // $('#hiddenDiv').attr("latitude") $('#hiddenDiv').attr("longitude")
+    center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
+    //  
   });
   
   renderQueryset(map)
+  
 
 }
 
+
+ Number($('#hiddenDiv').attr("longitude"))
 
 function renderQueryset(map) {
   $.get({
