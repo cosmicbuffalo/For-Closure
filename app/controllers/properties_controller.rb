@@ -32,6 +32,16 @@ class PropertiesController < ApplicationController
 
     puts property_params.inspect
 
+    @property = Property.new(property_params)
+
+    if @property.save
+      session[:property_in_progress] = nil
+      return redirect_to '/maps/index'
+    else
+      flash[:errors] = @property.errors
+      return redirect_to '/properties/new'
+    end
+
 
     redirect_to '/properties/new'
   end
@@ -70,7 +80,7 @@ class PropertiesController < ApplicationController
         property_params[:bathroom] = raw[:baths]
       end
       if raw[:sq_feet]
-        property_params[:sq_feet] = raw[:sq_feet]
+        property_params[:square_feet] = raw[:sq_feet]
       end
       if raw[:price]
         property_params[:price] = raw[:price]
