@@ -9,8 +9,8 @@
   </div>
   <form class="" action="/sessions" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="latitude" value="">
-    <input type="hidden" name="longitude" value="">
+    <input type="hidden" name="login[latitude]" value="">
+    <input type="hidden" name="login[longitude]" value="">
     <div class="form-group">
       <% if @register %>
       <input class="form-control form-toggle hidden" type="text" name="login[email]" value="" placeholder="Enter email">
