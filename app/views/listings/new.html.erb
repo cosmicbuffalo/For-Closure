@@ -25,3 +25,12 @@
     </form>
   </div>
 </div>
+
+
+<form action="/maps/create" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <input name="utf8" type="hidden" value="&#x2713;">
+    <input type="file" name="image">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type-"submit">Submit</button>
+</form>
+

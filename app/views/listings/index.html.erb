@@ -1,2 +1,19 @@
-<h1>Listings#index</h1>
-<p>Find me in app/views/listings/index.html.erb</p>
+
+    <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0]%>" longitude="<%= session[:user_coords][1]%>"></div>
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw&callback=initMap" type="text/javascript"></script>
+
+\
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+  
+    <%= render partial: "partials/listing_details"%>
+      
+  </div>
+
+    
+
+    
+    
+    

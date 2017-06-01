@@ -2,7 +2,6 @@ $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('#modal1').modal();
   $('.materialboxed').materialbox();
-  console.log(($('#hiddenDiv').attr("latitude")))
 
 });
 
@@ -28,7 +27,7 @@ function initMap() {
 
 function renderQueryset(map) {
   $.get({
-    url: 'query',
+    url: 'listings/query',
     dataType: 'json',
     success: function (res) {
      console.log(res)
@@ -90,7 +89,7 @@ function propertyQuery(map, res) {
     google.maps.event.addListener(marker,'click', function(position){
         console.log(this.propId)
         $.get({
-          url: 'info',
+          url: 'listings/info',
           data: {"id": this.propId},
           success: function (res){
             $('#modal1').html(res)

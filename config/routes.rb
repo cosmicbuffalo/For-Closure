@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
 
-  get 'maps/index'
+ 
 
-  get'maps/query' => 'maps#query'
 
-  get '/maps/info' => 'maps#info'
+  
 
-  post '/maps/create' => 'maps#create'
-  get 'maps/new' => 'maps#new'
+  post '/listings/create' => 'listings#create'
 
   get 'users/new' => 'users#new'
 
@@ -39,6 +37,8 @@ Rails.application.routes.draw do
 
   post 'listings/search' => 'listings#search'
 
+  get'listings/query' => 'listings#query'
+
   get 'listings' => 'listings#index'
 
   get 'listings/home' => 'listings#index'
@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   post 'listings/filter' => 'listings#filter'
 
   get 'listings/new' => 'listings#new'
+
+  get '/listings/info' => 'listings#info'
 
 
   post 'properties/new' => 'properties#start_listing'

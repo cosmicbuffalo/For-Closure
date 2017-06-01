@@ -36,6 +36,7 @@
   border-bottom: 1px solid lightgray;
   min-width: 980px;
   z-index: 20;
+  box-shadow: 5px
   /*height: 50px;*/
 }
 #top-bar{
