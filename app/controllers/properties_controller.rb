@@ -17,11 +17,23 @@ class PropertiesController < ApplicationController
 
     @property = Property.new(session[:property_in_progress])
 
+    puts "property in progress: ", session[:property_in_progress].inspect
+
     render 'edit.html.erb'
 
   end
 
   def create
+    puts params.inspect
+
+    params.each do |key, value|
+      puts "  key:", key, "  value:", value
+    end
+
+    puts property_params.inspect
+
+
+    redirect_to '/properties/new'
   end
 
   def show
@@ -35,10 +47,10 @@ class PropertiesController < ApplicationController
 
   private
     def property_params
-      raw = params.require(:property).permit(:address, :unit, :city, :state, :zipcode, :beds, :baths, :sq_feet, :price, :rent, :description, :home_type_id)
+      raw = params.require(:property).permit(:address, :unit, :city, :state, :zipcode, :beds, :baths, :sq_feet, :price, :rent, :description, :home_type_id, :rooms, :contact_number)
       property_params = {
-        zipcode: raw[:zipcode],
-        address: raw[:address] + " " + raw[:city] + ", " + raw[:state]
+        zipcode: session[:property_in_progress] ? session[:property_in_progress]['zipcode'] : raw[:zipcode],
+        address: session[:property_in_progress] ? session[:property_in_progress]['address'] : raw[:address] + " " + raw[:city] + ", " + raw[:state]
       }
       if session[:user_id]
         property_params[:user_id] = session[:user_id]
@@ -46,6 +58,9 @@ class PropertiesController < ApplicationController
       if raw[:unit]
         property_params[:unit] = raw[:unit]
         property_params[:address] = raw[:address] + " " + raw[:unit] + " " + raw[:city] + ", " + raw[:state]
+
+      elsif session[:property_in_progress]
+        property_params[:unit] = session[:property_in_progress]['unit']
       end
 
       if raw[:beds]
@@ -68,6 +83,15 @@ class PropertiesController < ApplicationController
       end
       if raw[:home_type_id]
         property_params[:home_type] = HomeType.find(raw[:home_type_id])
+      end
+      if raw[:rooms]
+        property_params[:rooms] = raw[:rooms]
+      end
+
+      if session[:property_in_progress]
+        session[:property_in_progress].each do |key, value|
+          property_params[key] = value
+        end
       end
 
       return property_params

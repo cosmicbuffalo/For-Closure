@@ -147,3 +147,8 @@ input{
   padding-left: 10px !important;
   box-sizing: border-box !important;
 }
+
+input[type="radio"]{
+  position: static !important;
+  opacity: 1 !important;
+}
