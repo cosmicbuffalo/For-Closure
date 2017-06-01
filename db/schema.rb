@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531182351) do
+
+ActiveRecord::Schema.define(version: 20170601050929) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "display"
   end
 
   create_table "categorizations", force: :cascade do |t|
@@ -48,6 +50,12 @@ ActiveRecord::Schema.define(version: 20170531182351) do
 
   add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
 
+  create_table "home_types", force: :cascade do |t|
+    t.string   "home_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string   "address"
     t.integer  "bedroom"
@@ -61,9 +69,12 @@ ActiveRecord::Schema.define(version: 20170531182351) do
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "home_type_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "rooms"
+    t.string   "contact_number"
+
   end
 
   add_index "properties", ["home_type_id"], name: "index_properties_on_home_type_id"
@@ -79,6 +90,7 @@ ActiveRecord::Schema.define(version: 20170531182351) do
     t.boolean  "landlord"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "zipcode"
   end
 
 end

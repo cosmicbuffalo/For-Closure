@@ -11,14 +11,14 @@
 #     {type:"house"},{type:"townhouse"},{type:"condo"}, {type:"apartment"}
 # ])
 
-# users = User.create([
-#     {first_name: "Bob",last_name:"Boberson", email:"bob@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
-#     {first_name: "Sally",last_name:"Sallyson", email:"sally@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
-#     {first_name: "Jim",last_name:"Jimmerson", email:"jim@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
-#     {first_name: "David",last_name:"Davidson", email:"david@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
-#     {first_name: "Doofy",last_name:"Dooferson", email:"doofy@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
-#     {first_name: "Billy",last_name:"Billyson", email:"billy@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: true},
-# ])
+users = User.create([
+    {first_name: "Bob",last_name:"Boberson", email:"bob@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
+    {first_name: "Sally",last_name:"Sallyson", email:"sally@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
+    {first_name: "Jim",last_name:"Jimmerson", email:"jim@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
+    {first_name: "David",last_name:"Davidson", email:"david@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
+    {first_name: "Doofy",last_name:"Dooferson", email:"doofy@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: false},
+    {first_name: "Billy",last_name:"Billyson", email:"billy@gmail.com", password:"password123", password_confirmation:"password123",phone_number:"(954)812-7944", agent: true},
+])
 
 properties = Property.create([
 
@@ -32,3 +32,15 @@ properties = Property.create([
 
 {address: "951 W Huron St, Chicago", bedroom: 2, bathroom: 2, zipcode: 60642, price: 3100.0, square_feet:850, unit:"1",rent: true, description:"2 Bedroom, 2 Bath Apartment Home - 2 bedroom, 2 bath apartment home available 5/1/2017, located in prime West Loop River West Neighborhood.",user: User.last}
 ])
+#
+# HomeType.create([
+#
+#   {home_type:"Condo"},
+#   {home_type:"Townhouse"},
+#   {home_type:"Multi family"},
+#   {home_type:"Apartment"},
+#   {home_type:"Mobile / Manufactured"},
+#   {home_type:"Coop Unit"},
+#   {home_type:"Vacant Land"},
+#   {home_type:"Other"},
+#   ])

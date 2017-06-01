@@ -1,0 +1,27 @@
+<div id="main-background-image" class="background-container">
+  <div id="angle-border-container" class="background-container">
+    <h4>Post a For Sale by Owner Listing</h4>
+  </div>
+  <div id="main-form-div" class="background-container">
+    <ul class="tabs">
+      <li class="tab">For Sale by Owner</li>
+      <li class="tab">Make Me Move</li>
+    </ul>
+    <form class="form inline-form" action="/properties/new" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="text" name="property[address]" value="" placeholder="Street address">
+      <input type="text" name="property[unit]" value="" placeholder="Unit# (Optional)">
+      <input type="text" name="property[city]" value="" placeholder="City">
+      <div id="wrap-chunk">
+        <select class="" name="property[state]">
+          <option value=""> </option>
+          <option value="IL">IL</option>
+        </select>
+        <input type="text" name="property[zipcode]" value="" placeholder="Zip">
+        <button type="submit" class="btn" name="button">Continue</button>
+      </div>
+
+      <p><a href="#">Sign in to save this draft or to recover an earlier version</a></p>
+    </form>
+  </div>
+</div>

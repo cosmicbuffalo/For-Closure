@@ -1,2 +1,369 @@
-<h1>Properties#edit</h1>
-<p>Find me in app/views/properties/edit.html.erb</p>
+
+<div id="top-spacer">
+
+</div>
+
+<div id="content-wrapper">
+  <div class="banner">
+    <a href="#">Sign in to save this draft or recover an earlier version</a>
+  </div>
+
+  <div class="listing-chunk">
+    <h4>For Sale By Owner Listing</h4>
+    <h6><%= @property.address %></h6>
+    <p>Post once and your home will be listed on both Zillow and Trulia, reaching buyers on the largest real estate network on the Web.  Plus, home shoppers receive emails about new homes on the market – including yours.</p>
+  </div>
+
+
+  <form id="listing-form" action="/properties" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <!-- <input type="hidden" name="property[]" value=""> -->
+
+  <div class="listing-chunk">
+    <h5>Set your price</h5>
+    <input type="text" name="property[price]" value="">
+  </div>
+
+  <div class="listing-chunk">
+    <h5>Photos</h5>
+    <label>Upload a Photo</label>
+    <br>
+    <button type="button" name="photo-upload-button">Upload Photos</button>
+  </div>
+
+  <div class="listing-chunk">
+    <h5>Home facts</h5>
+    <div class="column left-column">
+      <div class="form-group">
+        <label for="">Home Type</label>
+        <select class="" name="property[home_type_id]">
+          <option value="9" selected="selected">Single family</option>
+          <option value="1">Condo</option>
+          <option value="2">Townhouse</option>
+          <option value="3">Multi family</option>
+          <option value="4">Apartment</option>
+          <option value="5">Mobile / Manufactured</option>
+          <option value="6">Coop Unit</option>
+          <option value="7">Vacant land</option>
+          <option value="8">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="">Beds</label>
+        <input type="number" name="property[beds]" value="4">
+      </div>
+      <div class="form-group">
+        <label for="">Baths</label>
+        <input type="number" name="property[baths]" value="3">
+      </div>
+
+    </div>
+    <div class="column right-column">
+      <div class="form-group">
+        <label for="">Square feet</label>
+        <input type="number" name="property[sq_feet]" value="">
+      </div>
+      <div class="form-group">
+        <label for="">Describe your home</label>
+        <textarea name="property[description]" rows="8" cols="80"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="listing-chunk">
+    <div class="column left-column">
+      <div class="category-section">
+        <h6><a href="#" folds="room-section">Room Details</a></h6>
+        <div id="room-section" class="foldable-details">
+          <div class="details-subsection">
+            <label>Appliances</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Dishwasher", "appliance") %>
+              <%= checkbox_and_label("Dryer", "appliance") %>
+              <%= checkbox_and_label("Freezer", "appliance") %>
+              <%= checkbox_and_label("Garbage disposal", "appliance") %>
+              <%= checkbox_and_label("Microwave", "appliance") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Range / Oven", "appliance") %>
+              <%= checkbox_and_label("Refrigerator", "appliance") %>
+              <%= checkbox_and_label("Trash compactor", "appliance") %>
+              <%= checkbox_and_label("Washer", "appliance") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Basement</label>
+            <div class="sub-column">
+              <%= radio_and_label("Finished", "basement") %>
+              <%= radio_and_label("Partially finished", "basement") %>
+            </div>
+            <div class="sub-column">
+              <%= radio_and_label("Unfinished", "basement") %>
+              <%= radio_and_label("None", "basement") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Floor Covering</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Carpet", 'floor') %>
+              <%= checkbox_and_label("Concrete", 'floor') %>
+              <%= checkbox_and_label("Hardwood", 'floor') %>
+              <%= checkbox_and_label("Laminate", 'floor') %>
+              <%= checkbox_and_label("Linoleum / Vinyl", 'floor') %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Slate", 'floor') %>
+              <%= checkbox_and_label("Softwood", 'floor') %>
+              <%= checkbox_and_label("Tile", 'floor') %>
+              <%= checkbox_and_label("Other", 'floor') %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Rooms</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Breakfast nook", "room") %>
+              <%= checkbox_and_label("Dining room", "room") %>
+              <%= checkbox_and_label("Family room", "room") %>
+              <%= checkbox_and_label("Laundry room", "room") %>
+              <%= checkbox_and_label("Library", "room") %>
+              <%= checkbox_and_label("Master bath", "room") %>
+              <%= checkbox_and_label("Mud room", "room") %>
+
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Office", "room") %>
+              <%= checkbox_and_label("Pantry", "room") %>
+              <%= checkbox_and_label("Recreation room", "room") %>
+              <%= checkbox_and_label("Workshop", "room") %>
+              <%= checkbox_and_label("Solarium / Atrium", "room") %>
+              <%= checkbox_and_label("Sun room", "room") %>
+              <%= checkbox_and_label("Walk-in closet", "room") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label id="total-rooms-label">Total rooms</label>
+            <input type="number" name="property[rooms]" value="">
+          </div>
+          <div class="details-subsection">
+            <label>Indoor features</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Attic", "indoor") %>
+              <%= checkbox_and_label("Cable ready", "indoor") %>
+              <%= checkbox_and_label("Ceiling fans", "indoor") %>
+              <%= checkbox_and_label("Double pane/storm windows", "indoor") %>
+              <%= checkbox_and_label("Fireplace", "indoor") %>
+              <%= checkbox_and_label("Intercom system", "indoor") %>
+              <%= checkbox_and_label("Jetted tub", "indoor") %>
+
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Mother-in-law apartment", "indoor") %>
+              <%= checkbox_and_label("Security system", "indoor") %>
+              <%= checkbox_and_label("Skylights", "indoor") %>
+              <%= checkbox_and_label("Vaulted ceiling", "indoor") %>
+              <%= checkbox_and_label("Wet bar", "indoor") %>
+              <%= checkbox_and_label("Wired", "indoor") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="category-section">
+        <h6><a href="#" folds="building-section">Building Details</a></h6>
+        <div id="room-section" class="foldable-details">
+          <div class="details-subsection">
+            <label>Building Amenities</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Assisted living community", "amenities") %>
+              <%= checkbox_and_label("Basketball court", "amenities") %>
+              <%= checkbox_and_label("Controlled access", "amenities") %>
+              <%= checkbox_and_label("Disabled access", "amenities") %>
+              <%= checkbox_and_label("Doorman", "amenities") %>
+              <%= checkbox_and_label("Elevator", "amenities") %>
+              <%= checkbox_and_label("Fitness center", "amenities") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Gated entry", "amenities") %>
+              <%= checkbox_and_label("Near transportation", "amenities") %>
+              <%= checkbox_and_label("Over 55+ active community", "amenities") %>
+              <%= checkbox_and_label("Sports court", "amenities") %>
+              <%= checkbox_and_label("Storage", "amenities") %>
+              <%= checkbox_and_label("Tennis court", "amenities") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Architectural Style</label>
+
+            <div class="sub-column">
+              <%= radio_and_label("Bungalow", "architecture") %>
+              <%= radio_and_label("Cape cod", "architecture") %>
+              <%= radio_and_label("Colonial", "architecture") %>
+              <%= radio_and_label("Contemporary", "architecture") %>
+              <%= radio_and_label("Craftsman", "architecture") %>
+              <%= radio_and_label("French", "architecture") %>
+              <%= radio_and_label("Georgian", "architecture") %>
+              <%= radio_and_label("Loft", "architecture") %>
+
+            </div>
+            <div class="sub-column">
+              <%= radio_and_label("Modern", "architecture") %>
+              <%= radio_and_label("Queen Anne / Victorian", "architecture") %>
+              <%= radio_and_label("Ranch / Rambler", "architecture") %>
+              <%= radio_and_label("Santa Fe / Pueblo Style", "architecture") %>
+              <%= radio_and_label("Spanish", "architecture") %>
+              <%= radio_and_label("Split-level", "architecture") %>
+              <%= radio_and_label("Tudor", "architecture") %>
+              <%= radio_and_label("Other", "architecture") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Exterior</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Brick", "exterior") %>
+              <%= checkbox_and_label("Cement / Concrete", "exterior") %>
+              <%= checkbox_and_label("Composition", "exterior") %>
+              <%= checkbox_and_label("Metal", "exterior") %>
+              <%= checkbox_and_label("Shingle", "exterior") %>
+              <%= checkbox_and_label("Stone", "exterior") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Stucco", "exterior") %>
+              <%= checkbox_and_label("Vinyl", "exterior") %>
+              <%= checkbox_and_label("Wood", "exterior") %>
+              <%= checkbox_and_label("Wood products", "exterior") %>
+              <%= checkbox_and_label("Other", "exterior") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Outdoor Amenities</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Balcony/patio", "outdoor") %>
+              <%= checkbox_and_label("Barbecue area", "outdoor") %>
+              <%= checkbox_and_label("Deck", "outdoor") %>
+              <%= checkbox_and_label("Dock", "outdoor") %>
+              <%= checkbox_and_label("Fenced yard", "outdoor") %>
+              <%= checkbox_and_label("Garden", "outdoor") %>
+              <%= checkbox_and_label("Greenhouse", "outdoor") %>
+              <%= checkbox_and_label("Hot tub/spa", "outdoor") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Lawn", "outdoor") %>
+              <%= checkbox_and_label("Pond", "outdoor") %>
+              <%= checkbox_and_label("Pool", "outdoor") %>
+              <%= checkbox_and_label("Porch", "outdoor") %>
+              <%= checkbox_and_label("RV parking", "outdoor") %>
+              <%= checkbox_and_label("Sauna", "outdoor") %>
+              <%= checkbox_and_label("Sprinkler system", "outdoor") %>
+              <%= checkbox_and_label("Waterfront", "outdoor") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Parking</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Carport", "parking") %>
+              <%= checkbox_and_label("Garage - Attached", "parking") %>
+              <%= checkbox_and_label("Garage - Detached", "parking") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Off-street", "parking") %>
+              <%= checkbox_and_label("On-street", "parking") %>
+              <%= checkbox_and_label("None", "parking") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Roof</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Asphalt", "roof") %>
+              <%= checkbox_and_label("Built-up", "roof") %>
+              <%= checkbox_and_label("Composition", "roof") %>
+              <%= checkbox_and_label("Metal", "roof") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Shake / Shingle", "roof") %>
+              <%= checkbox_and_label("Slate", "roof") %>
+              <%= checkbox_and_label("Tile", "roof") %>
+              <%= checkbox_and_label("Other", "roof") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>View</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("City", "view") %>
+              <%= checkbox_and_label("Mountain", "view") %>
+              <%= checkbox_and_label("Park", "view") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Territorial", "view") %>
+              <%= checkbox_and_label("Water", "view") %>
+              <%= checkbox_and_label("None", "view") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column right-column">
+      <div class="category-section">
+        <h6><a href="#" folds="utility-section">Utility Details</a></h6>
+        <div id="utility-section" class="foldable-details">
+          <div class="details-subsection">
+            <label>Cooling Type</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Central", "cooling") %>
+              <%= checkbox_and_label("Evaporative", "cooling") %>
+              <%= checkbox_and_label("Geothermal", "cooling") %>
+              <%= checkbox_and_label("Refrigeration", "cooling") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Solar", "cooling") %>
+              <%= checkbox_and_label("Wall", "cooling") %>
+              <%= checkbox_and_label("Other", "cooling") %>
+              <%= checkbox_and_label("None", "cooling") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Heating Type</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Baseboard", "heating") %>
+              <%= checkbox_and_label("Forced air", "heating") %>
+              <%= checkbox_and_label("Geothermal", "heating") %>
+              <%= checkbox_and_label("Heat pump", "heating") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Radiant", "heating") %>
+              <%= checkbox_and_label("Stove", "heating") %>
+              <%= checkbox_and_label("Wall", "heating") %>
+              <%= checkbox_and_label("Other", "heating") %>
+            </div>
+          </div>
+          <div class="details-subsection">
+            <label>Heating Fuel</label>
+            <div class="sub-column">
+              <%= checkbox_and_label("Coal", "fuel") %>
+              <%= checkbox_and_label("Electric", "fuel") %>
+              <%= checkbox_and_label("Gas", "fuel") %>
+              <%= checkbox_and_label("Oil", "fuel") %>
+              <%= checkbox_and_label("Propane / Butane", "fuel") %>
+            </div>
+            <div class="sub-column">
+              <%= checkbox_and_label("Solar", "fuel") %>
+              <%= checkbox_and_label("Wood / Pellet", "fuel") %>
+              <%= checkbox_and_label("Other", "fuel") %>
+              <%= checkbox_and_label("None", "fuel") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="listing-chunk">
+    <h5>Contact information</h5>
+    <label>Phone number</label>
+    <input type="text" name="property[contact_number]" placeholder="555-555-5555">
+  </div>
+  <div class="listing-chunk">
+    <div class="category-row">
+      <input type="checkbox" name="message_read" value="true">
+      I agree to the following... (official sounding stuff)
+    </div>
+    <button id="listing-submit-button" type="submit">Post for sale by owner</button>
+  </div>
+  </form>
+</div>
