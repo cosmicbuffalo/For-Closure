@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   
   get'maps/query' => 'maps#query'
 
-  post 'maps/info' => 'maps#info'
+  get '/maps/info' => 'maps#info'
+
+  post '/maps/create' => 'maps#create'
+  get 'maps/new' => 'maps#new'
 
   get 'users/new' => 'users#new'
 

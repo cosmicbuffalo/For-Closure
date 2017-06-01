@@ -1,0 +1,63 @@
+
+<% if @property%>
+    <div class="modal-content">
+      <div class="scrollmenu">
+        <div class = 'image-sizing'>
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%=@property.latitude%>,<%=@property.longitude%>&zoom=18&size=600x300&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C<%=@property.latitude%>,<%=@property.longitude%>&redmaptype=roadmap&key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw" alt="">
+        </div>
+        <% if @property_images.count > 0 %>
+
+            <% @property_images.each do |image| %>
+                    <div class = 'image-sizing'>
+                        <img class="materialboxed" src="<%= image.image.url%>" alt="Property Images">
+                    </div>
+
+            <% end %>
+
+        <% else %>
+
+            <div class = 'image-sizing'>
+                <img class="materialboxed" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="">
+            </div>
+
+        <% end %>
+        
+      </div>
+      <div id="buyer-info">
+        <% if @property.rent == false %>
+            <h5> id="address-list-type">For Sale</h5>
+            <h5 id="address-price">$<%=@property.price%></h5>
+        <% else %>
+            <h5 id="address-list-type">For Rent</h5>
+            <h5 id="address-price">$<%=@property.price%> /mo</h5>
+        <% end %>
+      </div>
+      <div id="contact-agent">
+        <p>Contact Agent</p>
+        <img src="https://pbs.twimg.com/profile_images/802525846879670272/0QfWiKAO.jpg" height="40" alt="">
+        <div id="agent-info">
+            <p>Mr. Smith </p>
+            <p>(773)441-8270</p>
+        </div><br>
+        <!-- of Judy Smith -->
+        <form action="/send-message">
+            <textarea name="message" id="" cols="30" rows="15">I am interested in <%=@property.address%></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+
+      </div>
+      <h4 id="address-banner"><%=@property.address%></h4>
+      <p id="address-details"><%=@property.bedroom%>bd | <%=@property.bathroom%>br | <%=@property.square_feet%> sqft</p>
+      <p id="address-description"><%=@property.description%></p>
+      <h5>Facts and Features</h5>
+      <table>
+        <tr>
+          <th>
+
+          </th>
+        </tr>
+      </table>
+
+</div>
+<%end%>
