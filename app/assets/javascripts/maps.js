@@ -1,6 +1,7 @@
 $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('#modal1').modal();
+  $('.materialboxed').materialbox();
 
 
 
@@ -28,7 +29,7 @@ function renderQueryset(map) {
     url: 'query',
     dataType: 'json',
     success: function (res) {
-      console.log(res)
+     console.log(res)
       propertyQuery(map, res)
     }
   })
@@ -41,8 +42,14 @@ function propertyQuery(map, res) {
   for (var i = 0; i < res.length; i++) {
 
     var myLatLng = new google.maps.LatLng(res[i].latitude, res[i].longitude);
-    var address = res[i].address;
 
+    
+    if (res[i].rent == false){
+      var priceString = "$"+res[i].price
+    }
+    else{
+      var priceString = "$" + res[i].price + "/mo"
+    }
     var marker = new google.maps.Marker({
       position: myLatLng,
       map: map,
@@ -55,8 +62,15 @@ function propertyQuery(map, res) {
       propId: res[i].id
 
     })
-    var content = address;
+  try{
+    var content = '<img  src="'+ res[i].images[0].image.url+ '"alt= "Nothin" height="45">';
+  }
 
+  catch (err) {
+    var content = '<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt= "Nothin" height="45">'
+  }
+
+  content += '<div class="hover-info"><ul> <li>' + priceString +"</li><br>" + "<li>"+res[i].bedroom +"bd | " + res[i].bathroom + "br</li><br>" +"<li>" + res[i].square_feet +" sqft </li>" + "</div>";
     var infowindow = new google.maps.InfoWindow()
 
     google.maps.event.addListener(marker, 'mouseover', (function (marker, content, infowindow) {
@@ -72,26 +86,35 @@ function propertyQuery(map, res) {
     })(marker, content, infowindow));
 
     google.maps.event.addListener(marker,'click', function(position){
-        console.log(this.customInfo)
-        $.post({
+        console.log(this.propId)
+        $.get({
           url: 'info',
           data: {"id": this.propId},
-          dataType: 'json',
           success: function (res){
-
+            $('#modal1').html(res)
+            $('.materialboxed').materialbox();
             // Spilting up the replaces to better organize
-            var addressBanner = '<h4 id="address-banner">' + res.address+ "</h4>"
-            $('#address-banner').replaceWith(addressBanner)
+            // var addressBanner = '<h4 id="address-banner">' + res.address+ "</h4>"
+            // $('#address-banner').replaceWith(addressBanner)
 
-            var addressDetails = '<p id="address-details"><b>' + res.bedroom + "bd | "+res.bathroom+"br | " + res.square_feet + "sqft </b></p>"
-            $('#address-details').replaceWith(addressDetails)
+            // var addressDetails = '<p id="address-details"><b>' + res.bedroom + "bd | "+res.bathroom+"br | " + res.square_feet + "sqft </b></p>"
+            // $('#address-details').replaceWith(addressDetails)
 
-            var addressDescription = '<p id="address-description">' + res.description + '</p>'
-            $('#address-description').replaceWith(addressDescription)
+            // var addressDescription = '<p id="address-description">' + res.description + '</p>'
+            // $('#address-description').replaceWith(addressDescription)
 
-            if (res.rent == false){
-              var addressListType = '<p>'
-            }
+            // if (res.rent == false){
+            //   var addressListType = '<p id="address-list-type">For Sale</p>'
+            //   var addressPrice = '<h4 id="address-price"><b> $' + res.price + '</b></h4>'
+            // }
+            // else{
+            //   var addressListType = '<p id="address-list-type">For Rent</p>'
+            //   var addressPrice = '<h4 id="address-price"><b> $' + res.price + ' /mo</b></h4>'
+            // }
+            // $('#address-list-type').replaceWith(addressListType)
+            // $('#address-price').replaceWith(addressPrice)
+
+           
 
 
           }
