@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
 
-  
+
 
   $('li.tab').on('click', 'a', function(){
 
@@ -98,6 +98,6 @@ function getLocation() {
 }
 
 function insertPos(position) {
-    $('input[name=latitude]').val(position.coords.latitude);
-    $('input[name=longitude]').val(position.coords.longitude).done($('#user-modal-div form').trigger('submit'))
+    $('input[name="login[latitude]"]').val(position.coords.latitude);
+    $('input[name="login[longitude]"]').val(position.coords.longitude).done($('#user-modal-div form').trigger('submit'))
 }

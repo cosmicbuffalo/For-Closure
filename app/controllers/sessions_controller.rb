@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] = @user.id
       session[:user_coords] = [login_params[:latitude], login_params[:longitude]]
-      puts login_params
+      puts "login_params----->", login_params
+      puts "Session ------>", session[:user_coords]
       return render json: {result:"success", coords:session[:user_coords]}
     else
       flash[:errors] = ["Incorrect email or password. Please try again."]
