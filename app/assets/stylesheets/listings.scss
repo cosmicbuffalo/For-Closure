@@ -43,7 +43,7 @@
 
     input, select{
       color: black;
-      
+
       background-color: white !important;
       display: inline-block !important;
       margin-right: 10px;
@@ -88,8 +88,8 @@
       }
 
 
-.modal { 
-  width: 55% !important ; 
+.modal {
+  width: 55% !important ;
   max-height: 90% !important;
 }
 
@@ -104,8 +104,8 @@ div.scrollmenu {
       overflow: hidden;
       img{
  /* or any custom size */
-        width: 100%; 
-        
+        width: 100%;
+
       }
     }
 
@@ -117,7 +117,7 @@ div.scrollmenu img {
     text-align: center;
     padding: 14px;
     text-decoration: none;
-    
+
 }
 div.scrollmenu .material-placeholder{
   margin: 0px !important;
@@ -126,6 +126,11 @@ div.scrollmenu .material-placeholder{
 }
 
 #modal1{
+
+  width: 80% !important;
+  height: 100% !important;
+  overflow-y: scroll !important;
+
   #address-banner{
     width:40%;
   }
@@ -140,6 +145,65 @@ div.scrollmenu .material-placeholder{
     position: absolute;
     margin-left:40%;
   }
+
+  table{
+    width: 100%;
+
+    img{
+      width: 60px;
+      height: 60px;
+    }
+    label{
+      color: black !important;
+      font-size: 1.4em;
+    }
+    div{
+      display: inline-block;
+      vertical-align: top;
+
+      p{
+        margin: 0px;
+      }
+
+    }
+
+  }
+
+  #category-details-div{
+
+    width: 60%;
+
+    .features-section{
+      border-bottom: 1px solid gray;
+    }
+    .feature-group{
+      margin-bottom: 20px;
+    }
+
+    h6{
+      font-weight: bold;
+      font-size: .9em;
+    }
+    .features-column{
+      width: 49%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    label{
+      color: black;
+      font-size: 1em;
+      font-weight: bold;
+    }
+    span.sub-label{
+      color: gray;
+    }
+    p{
+      margin:0px;
+    }
+
+
+  }
+
 
 }
 

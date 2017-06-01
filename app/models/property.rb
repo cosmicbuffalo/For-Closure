@@ -31,4 +31,31 @@ class Property < ActiveRecord::Base
   after_validation :geocode
   acts_as_mappable :lat_column_name => :latitude, :lng_column_name => :longitude
 
+
+
+  def get_category_details(category_group)
+    categories = self.categories.where("category like?", "#{category_group}%")
+    unless categories.length == 0
+      found = []
+      categories.each do |category|
+        found.push category.display
+      end
+      return found.join(', ')
+    else
+      return false
+    end
+  end
+
+  def bedrooms
+
+    beds = self.bedroom if self.bedroom
+
+    return "Beds: #{beds}" if beds
+
+    return false
+
+  end
+
+
+
 end
