@@ -1,10 +1,19 @@
 
     <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0]%>" longitude="<%= session[:user_coords][1]%>"></div>
+    <div id="filter-bar"> 
+    
+    
+    
+    </div>
     <div id="map"></div>
+    <div id="listings-sidebar">
+    
+    <%= render partial: "partials/listing_tiles"%>
 
+    </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw&callback=initMap" type="text/javascript"></script>
 
-\
+
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
   
