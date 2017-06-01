@@ -1,0 +1,31 @@
+<% @properties.each do |property|%>
+    <% if property.images.count > 0 %>
+
+        <% home_image = property.images[0].image.url %>
+
+    <% else%>
+
+        <% home_image = 'http://www.beachbreakbrasil.com/img/no-image-yet-l.jpg' %>
+    
+    <% end %>
+
+    <% if property.rent == true%>
+
+        <% rent = "For Rent" %>
+    
+    <% else %>
+    
+        <% rent = "For Sale"%>
+    
+    <% end %>
+    <div class="property-tile" style="background-image: url('<%=home_image%>');" property-id="<%= property.id %>">
+        <div class="tile-info">
+            <p><b><%= rent %></b></p>
+            <p><span class="price-font">$<%= property.price%>/mo</span><span class="amenity-font"><%= property.bedroom %> bd | <%= property.bathroom %> br |  <%= property.square_feet %>+ sqft</span></p>
+            <p><span class="grey-font"><%= property.address %></p> 
+        </div>
+    </div>
+<% end %>
+
+    
+

@@ -4,6 +4,8 @@ class ListingsController < ApplicationController
     # set these sessions to the proper geolocations
     puts session[:latitude]
     puts session[:longitude]
+    @properties = Property.all
+
   end
 
 

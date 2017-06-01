@@ -2,7 +2,9 @@ $(document).ready(function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('#modal1').modal();
   $('.materialboxed').materialbox();
-
+  
+  tileClick()
+  
 });
 
 
@@ -124,4 +126,20 @@ function propertyQuery(map, res) {
       });
 
   }
+}
+
+function tileClick(){
+  $("#listings-sidebar").on('click', ".property-tile", function(){
+    console.log($(this).attr('property-id'))
+    $.get({
+      url: "listings/info",
+      data: {"id": $(this).attr('property-id')},
+      success: function (res){
+            $('#modal1').html(res)
+            $('.materialboxed').materialbox();
+      }
+
+    })
+    $('#modal1').modal('open');
+  })
 }
