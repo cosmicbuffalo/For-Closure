@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   get 'listings' => 'listings#index' #main map view
 
-  get '/listings/info' => 'listings#info'
+  get 'listings/info' => 'listings#info'
 
   post 'listings/partial_search' => 'listings#partial_search'
 

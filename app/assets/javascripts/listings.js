@@ -23,7 +23,7 @@ function sendPos(position) {
     }
   })
 
-
+}
 
 
 var map;
@@ -139,8 +139,8 @@ function propertyQuery(map, res) {
           }
         })
         $('#modal1').modal('open');
-      });
-      google.maps.event.addListener($('#map-search-button'),"click", function(e){
+    });
+    google.maps.event.addListener($('#map-search-button'),"click", function(e){
         e.preventDefault()
         console.log('yay')
 
@@ -166,8 +166,8 @@ function tileClick(){
   })
 }
 
-function newLocation(newLat,newLng)
-{ console.log('fdfadsf');//25.7616798, -80.1917902
+function newLocation(newLat,newLng){
+  console.log('fdfadsf');//25.7616798, -80.1917902
 	map.panTo({lat: newLat, lng: newLng});
 }
 
@@ -199,8 +199,6 @@ $(document).on('turbolinks:load',function () {
         success: function(res){
           console.log(res);
           newLocation(res[0],res[1]);
-
-//set center
 
         }
 
