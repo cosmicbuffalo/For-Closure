@@ -1,6 +1,16 @@
 
+    <% if session[:search_coords] %>
 
+
+    <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:search_coords][0] if session[:search_coords]%>" longitude="<%= session[:search_coords][1] if session[:search_coords]%>"></div>
+
+
+
+
+<% else %>
     <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0] if session[:user_coords]%>" longitude="<%= session[:user_coords][1] if session[:user_coords]%>"></div>
+
+<% end %>
 
     <div id="filter-bar"> 
       <div id="search-bar">

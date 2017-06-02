@@ -8,10 +8,21 @@ class ListingsController < ApplicationController
   end
 
   def search
-    if params[:location].present?
-      @coordinates = Geocoder.coordinates(params[:location])
-      session[:user_coords][0] = @coordinates[0]
-      session[:user_coords][1] = @coordinates[1]
+   
+    if params[:input_search].present?
+        puts "*********************"
+        puts params[:input_search]
+        puts "*********************"
+
+      @coordinates = Geocoder.coordinates(params[:input_search])
+      if @coordinates
+        puts @coordinates[0]
+        puts @coordinates[1]
+        puts session[:search_coords]
+        session[:search_coords] = @coordinates
+      else
+        puts "not working!"
+      end
     end
     return redirect_to '/listings'
   end

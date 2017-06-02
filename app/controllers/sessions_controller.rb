@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   layout 'maps.html.erb'
   
   def index
+    session.delete(:search_coords)
+    puts "*****************************"
+    puts session[:search_coords]
   end
 
   def new

@@ -11,10 +11,11 @@
         <button class="search-option button" type="button" name="zestimate" title="Your home on For-Closure">Zestimate</button>
       </div>
       <div id="search-bar-div" class="search-row">
+      
         <form class="" action="listings/search" method="post">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
           <input id="search-option" type="hidden" name="search_option" value="buy">
-          <input type="search" name="search" value="">
+          <input type="text" name="input_search">
           <div id="search-button-container">
             <button id="search-button" type="submit" name="search">Search</button>
           </div>
