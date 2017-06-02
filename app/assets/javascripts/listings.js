@@ -63,11 +63,11 @@ function sendPos(position) {
       var myLatLng = new google.maps.LatLng(res[i].latitude, res[i].longitude);
 
 
-      if (res[i].rent == false) {
-        var priceString = "$" + res[i].price
+      if (res[i].rent ) {
+        var priceString = "$" + res[i].price + "/mo"
       }
       else {
-        var priceString = "$" + res[i].price + "/mo"
+        var priceString = "$" + res[i].price 
       }
       var marker = new google.maps.Marker({
         position: myLatLng,
@@ -153,6 +153,7 @@ function sendPos(position) {
 
   function tileClick() {
     $("#listings-sidebar").on('click', ".property-tile", function () {
+    
       console.log($(this).attr('property-id'))
       $.get({
         url: "/listings/info",
@@ -189,6 +190,55 @@ function sendPos(position) {
     } else {
       console.log("location is already present")
     }
+
+
+    $('.property-tile .favorite').on("click", function(e){
+
+       e.stopPropagation()
+       console.log($('#logged-in').attr('is-logged-in'))
+       if($('#logged-in').attr('is-logged-in') == "true"){
+
+
+
+        if($(this).children().attr("style") == 'color:white'){
+
+          $(this).children().remove()
+          var htmlString = '<i class="small material-icons star-favorites" style="color:#0074e4">grade</i>'
+          $(this).append(htmlString)
+      }
+
+      else{
+        $(this).children().remove()
+        var htmlString = '<i  class="small material-icons star-favorites" style="color:white" >grade</i>'
+        $(this).append(htmlString)
+      }
+
+      var propertyId = $(this).parent().attr('property-id')
+      $.post({
+        url: "/listings/favorite",
+        data:{"prop_id": propertyId },
+        dataType: "json",
+        success: function(res){
+          console.log("yay")
+        }
+      })
+    }
+
+
+    else{
+      alert("You gotta be logged on to do that silly!")
+    }
+    
+    })
+
+
+
+
+
+
+
+
+
 
 
     $(document).on("click", '#map-search-button', function (e) {

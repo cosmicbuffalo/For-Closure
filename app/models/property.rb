@@ -1,7 +1,12 @@
 class Property < ActiveRecord::Base
   belongs_to :user
 
-  has_many :images, as: :imageable
+ 
+ has_many :images, as: :imageable
+
+
+  has_many :favorites
+  has_many :users_that_favorited , through: :favorites, source: :user
 
 #   has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }
 #   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
@@ -26,7 +31,7 @@ class Property < ActiveRecord::Base
   #   self.address.downcase!
   # end
 
-  has_many :owners , class_name: 'User'
+  
   geocoded_by :address
   after_validation :geocode
   acts_as_mappable :lat_column_name => :latitude, :lng_column_name => :longitude

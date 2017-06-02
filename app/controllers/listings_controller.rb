@@ -24,6 +24,24 @@ class ListingsController < ApplicationController
 
 
 
+  def favorite
+
+    property = Property.find(params["prop_id"])
+    user = User.find(session[:user_id])
+    favorite = Favorite.find_by(user: user, property: property)
+    if favorite
+      favorite.destroy
+    else 
+      new_favorite = Favorite.create(user: user, property: property)
+    end 
+
+
+
+
+    render json: {result: 'success'}
+  end
+
+
 
   def query
 

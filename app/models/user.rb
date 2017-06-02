@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   before_validation :downcase_email
 
   has_many :favorites
+  has_many :favorite_properties, through: :favorites, source: :property
+
+
+
   has_many :properties
   has_many :images, as: :imageable
 

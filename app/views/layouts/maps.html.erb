@@ -20,6 +20,7 @@
 <div id="user-modal" class="modal collapsible">
   <%= render partial: "partials/user_modal" %>
 </div>
+<div id="logged-in" is-logged-in="<%= session[:user_id] ? 'true' : 'false' %>"> </div>
 
 <div id="location-check" have-location="<%= session[:user_coords] ? 'true' : 'false' %>" class="modal">
 

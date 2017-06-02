@@ -53,6 +53,8 @@ Rails.application.routes.draw do
 
   post 'listings/partial_search' => 'listings#partial_search'
 
+  post '/listings/favorite' => 'listings#favorite'
+
   post 'listings/filter' => 'listings#filter' #soon to be method to filter search results, might not be ajaxified yet
 
   post 'listings/create' => 'listings#create' #are we even using this?
