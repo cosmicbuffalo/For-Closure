@@ -27,19 +27,19 @@
         <% end %>
       </div>
       <div id="contact-agent">
-        <% if @property.user.agent %>
+        <% if @property.user && @property.user.agent %>
           <p>Contact Agent</p>
-        <% elsif @property.user.landlord %>
+        <% elsif @property.user && @property.user.landlord %>
           <p>Contact Agent</p>
         <% else %>
           <p>Contact Owner</p>
         <% end %>
         <img src="https://pbs.twimg.com/profile_images/802525846879670272/0QfWiKAO.jpg" height="40" alt="">
         <div id="agent-info">
-          <% if @property.user.first_name && @property.user.last_name%>
+          <% if @property.user && @property.user.first_name && @property.user.last_name%>
           <p><%= @property.user.first_name %> <%= @property.user.last_name %></p>
           <% end %>
-          <% if @property.user.phone_number %>
+          <% if @property.user && @property.user.phone_number %>
             <p><%= @property.user.phone_number %></p>
           <%elsif @property.contact_number %>
             <p><%= @property.contact_number %></p>

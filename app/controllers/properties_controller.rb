@@ -53,7 +53,13 @@ class PropertiesController < ApplicationController
         # end
       end
 
-      return redirect_to '/maps/index'
+      params[:images]['image'].each do |image|
+
+        @image = @property.images.create!(image: image)
+
+      end
+
+      return redirect_to '/listings'
     else
       flash[:errors] = @property.errors
       return redirect_to '/properties/new'
