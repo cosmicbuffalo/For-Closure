@@ -6,26 +6,26 @@
     <% else%>
 
         <% home_image = 'http://www.beachbreakbrasil.com/img/no-image-yet-l.jpg' %>
-    
+
     <% end %>
 
-    <% if property.rent == true%>
+    <% if property.rent%>
 
-        <% rent = "For Rent" %>
-    
+        <% title = "FOR RENT" %>
+
     <% else %>
-    
-        <% rent = "For Sale"%>
-    
+        <% if property.user.agent%>
+          <% title = "FOR SALE BY AGENT"%>
+        <% else %>
+          <% title = "FOR SALE BY OWNER"%>
+        <% end %>
+
     <% end %>
     <div class="property-tile" style="background-image: url('<%=home_image%>');" property-id="<%= property.id %>">
         <div class="tile-info">
-            <p><b><%= rent %></b></p>
-            <p><span class="price-font">$<%= property.price%>/mo</span><span class="amenity-font"><%= property.bedroom %> bd | <%= property.bathroom %> br |  <%= property.square_feet %>+ sqft</span></p>
-            <p><span class="grey-font"><%= property.address %></p> 
+            <p class="tile-title"><b><%= title %></b></p>
+            <p><span class="price-font">$<%= property.price.to_i%><%= '/mo' if property.rent %></span><span class="amenity-font"><%= property.bedroom %> bd | <%= property.bathroom %> br <%= "| #{property.square_feet}+ sqft" if property.square_feet %></span></p>
+            <p class="grey-font"><%= property.address %></p>
         </div>
     </div>
 <% end %>
-
-    
-

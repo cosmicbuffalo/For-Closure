@@ -19,12 +19,27 @@ input.form-control{
 }
 
 li.tab a{
-  color: blue !important;
+
 }
 
-div.indicator{
-  background-color: blue !important;
+.tabs {
+
+  .indicator {
+    display: none;
+  }
+  .tab {
+
+    a{
+
+      color: blue !important;
+
+      &.active {
+        border-bottom: 2px solid blue;
+      }
+    }
+  }
 }
+
 
 .hidden{
   display: none;

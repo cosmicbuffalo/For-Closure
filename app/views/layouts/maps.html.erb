@@ -14,8 +14,12 @@
 </head>
 <body>
 
-<%= render partial: 'partials/header' %> 
+<%= render partial: 'partials/header' %>
 <%= yield %>
+
+<div id="user-modal" class="modal collapsible">
+  <%= render partial: "partials/user_modal" %>
+</div>
 
 </body>
 </html>

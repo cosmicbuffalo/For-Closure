@@ -15,16 +15,21 @@
  *= require materialize
  */
 
+ 
+
  *{
    font-family: Gotham,gotham,Verdana,sans-serif;
  }
  body{
    margin: 0px;
+   min-width: 980px;
  }
 
 .error-message{
   color: red;
 }
+
+
 
 #header{
   width: 100%;
@@ -50,7 +55,7 @@
   height: 100px;
   z-index: 10;
   background-color: blue;
-  
+
   /*top: 0px;
   left: 20px;*/
 }
@@ -68,8 +73,37 @@
    padding: 0px 8px;
  }
 
+ .nav-items-list{
+   margin: 0px;
+   height: 100%;
+ }
  #session-nav-items{
    float: right;
+ }
+ .nav-items-list li{
+   height: 100%;
+   padding-top: 15px;
+   box-sizing: border-box;
+ }
+ .nav-items-list li a, .nav-items-list li span{
+   display: inline-block;
+   text-align: center;
+   vertical-align: middle;
+   height: 100%;
+   box-sizing: border-box;
+ }
+
+ #hub-dropdown{
+   width: 190px;
+   height: 210px;
+   white-space: normal !important;
+ }
+ #hub-dropdown .drop-section{
+   padding:20px;
+ }
+ #hub-dropdown a{
+   display: inline-block;
+   padding: 4px;
  }
 
  .icon{

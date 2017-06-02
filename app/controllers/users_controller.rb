@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     puts @user.inspect
     if @user.save
+      session[:user_id] = @user.id
+      unless session[:user_coords]
+        session[:user_coords] = [coords_params[:latitude], coords_params[:longitude]] if coords_params[:latitude] && coords_params[:longitude]
+      end
       return render json: {result:"success"}
 
     else
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
 
     end
 
-    render partial: 'sign_in_chunk.html.erb'
+    render partial: 'partials/user_modal.html.erb'
 
   end
 
@@ -68,6 +72,11 @@ class UsersController < ApplicationController
       end
       puts "new user params:", user_params
       return user_params
+
+    end
+
+    def coords_params
+      params.require(:login).permit(:latitude, :longitude)
 
     end
 
