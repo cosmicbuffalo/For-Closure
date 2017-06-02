@@ -14,7 +14,7 @@
         <% title = "FOR RENT" %>
 
     <% else %>
-        <% if property.user.agent%>
+        <% if property.user && property.user.agent%>
           <% title = "FOR SALE BY AGENT"%>
         <% else %>
           <% title = "FOR SALE BY OWNER"%>

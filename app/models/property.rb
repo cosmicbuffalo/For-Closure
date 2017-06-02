@@ -1,20 +1,11 @@
 class Property < ActiveRecord::Base
   belongs_to :user
-
-  has_many :images, as: :imageable
-
-#   has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }
-#   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
-
-  # belongs_to :home_type, through: :category
   belongs_to :home_type
   has_many :categorizations
   has_many :categories, through: :categorizations
-
-  # has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }
-  # validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
-  # belongs_to :home_type, through: :category
-
+  has_many :images, as: :imageable
+  accepts_nested_attributes_for :images
+  # has_many :owners , class_name: 'User'
 
   validates :address, presence: :true, uniqueness: { case_sensitive: false }
   validates :price, presence: :true
@@ -26,7 +17,6 @@ class Property < ActiveRecord::Base
   #   self.address.downcase!
   # end
 
-  has_many :owners , class_name: 'User'
   geocoded_by :address
   after_validation :geocode
   acts_as_mappable :lat_column_name => :latitude, :lng_column_name => :longitude
@@ -45,17 +35,6 @@ class Property < ActiveRecord::Base
       return false
     end
   end
-
-  def bedrooms
-
-    beds = self.bedroom if self.bedroom
-
-    return "Beds: #{beds}" if beds
-
-    return false
-
-  end
-
 
 
 end
