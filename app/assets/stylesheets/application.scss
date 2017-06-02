@@ -1,0 +1,265 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require materialize
+ */
+
+ $zillowBlue:rgb(0,116,228);
+
+ *{
+   font-family: Gotham,gotham,Verdana,sans-serif;
+ }
+
+ body{
+   margin: 0px;
+   min-width: 980px;
+ }
+
+.error-message{
+  color: red;
+}
+
+.hidden{
+  display: none;
+}
+
+.icon{
+  width: 18px;
+  height: 18px;
+}
+
+input{
+  padding-left: 10px !important;
+  box-sizing: border-box !important;
+
+  &[type="radio"]{
+    position: static !important;
+    opacity: 1 !important;
+  }
+
+
+}
+
+
+#header{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 20px;
+  position: absolute;
+  top: 0px;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
+  min-width: 980px;
+  z-index: 20;
+  box-shadow: 0px 0px 10px #888888;
+  /*height: 50px;*/
+
+  #top-bar{
+    height: 50px;
+    vertical-align: top;
+  }
+
+  #main-logo{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    z-index: 10;
+    background-color: $zillowBlue;
+
+
+    /*top: 0px;
+    left: 20px;*/
+  }
+
+  ul{
+    padding: 0px;
+    vertical-align: top;
+    list-style: none;
+    display: inline-block;
+
+    li{
+      vertical-align: top;
+      display: inline-block;
+      padding: 0px 8px;
+    }
+
+    &#session-nav-items{
+      float: right;
+    }
+
+    &#main-nav-items{
+      a{
+        color: black;
+      }
+    }
+
+    &.nav-items-list{
+      margin: 0px;
+      height: 100%;
+
+      li{
+        height: 100%;
+        padding-top: 15px;
+        box-sizing: border-box;
+
+        a, span{
+          display: inline-block;
+          // text-align: center;
+          // vertical-align: middle;
+          height: 100%;
+          box-sizing: border-box;
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+#hub-dropdown{
+  width: 190px;
+  height: 210px;
+  white-space: normal !important;
+
+  .drop-section{
+    padding:20px;
+
+    a{
+      display: inline-block;
+      padding: 4px;
+    }
+  }
+
+
+
+}
+
+
+
+#main-centered-section{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  /*background-color: lightblue;*/
+
+  background-size: cover;
+  height: 600px;
+
+  &.buy{
+    background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(buy_background_still.jpg);
+  }
+  &.rent{
+    background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(rent_background_still.jpg);
+  }
+  &.sell{
+    background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(sell_background_still.jpg);
+  }
+  &.zestimate{
+    background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(zestimate_background_still.jpg);
+  }
+
+
+  #search-wrapper{
+   display: inline-block;
+   width: 610px;
+   position: absolute;
+   top: 165px;
+   left: 50%;
+   margin-left: -305px;
+
+
+    .search-option{
+      width: 25%;
+      border: 1px solid white;
+      float:left;
+      font-size: 17px;
+      background-color: rgba(0,0,0,.5);
+      padding: 11px 0px 12px 0px;
+
+      &.selected{
+        background-color: rgba($zillowBlue, 0.75);
+      }
+
+      &:hover:not(.selected){
+        background-color: rgba($zillowBlue, 0.6);
+      }
+
+    }
+
+    .search-row{
+      margin-bottom: 12px;
+
+      h1{
+        margin-top: 0px;
+        margin-bottom: 37px;
+        font-weight: 500;
+        font-size: 50px;
+        color: white;
+        text-align: center;
+        width: 120%;
+        position: relative;
+        left:-10%;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      input{
+        width: 100%;
+        display: inline-block;
+        padding:17px 115px 19px 20px !important;
+        border: 0px ;
+        border-radius: 5px !important;
+        font-size: 21px !important;
+        margin-top: 22px !important;
+        margin-bottom: 0px !important;
+        background-color: white !important;
+        height: auto !important;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5) !important;
+        box-sizing: border-box !important;
+      }
+
+      #search-button{
+        float: right;
+        position: relative;
+        top: -52px;
+        right: 8px;
+        width: 102px;
+        height: 44px;
+        padding: 0px 12px;
+        border-radius: 5px;
+        background-color: $zillowBlue;
+        border: 0px;
+
+      }
+
+
+    }
+
+
+
+    button{
+      box-sizing: border-box;
+      color: white !important;
+      font-size: 16px;
+    }
+
+
+
+  }
+
+
+}

@@ -18,6 +18,15 @@
 
 $(document).on('turbolinks:load', function(){
 
+
+  if ($('#location-check').attr('have-location') == 'false'){
+    console.log("couldn't find location, running set_user_coords")
+    set_user_coords();
+  } else{
+    console.log("location is already present")
+  }
+
+
   $('#hub-link').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -54,12 +63,21 @@ $(document).on('turbolinks:load', function(){
         }
       })
     } else{
-      $('#user-modal').modal('open')
-      window.dispatchEvent(new Event('resize'));
-      $('div.modal-overlay').css('background','#fff')
+      $.get({
+        url:'/users/get_user_modal',
+        success:function(res){
+          // console.log(res)
+          $('#user-modal').html(res).delay(320)
+          // bindUserModalHandlers()
+          $('ul.tabs').tabs();
+          $('#user-modal').modal('open')
+          window.dispatchEvent(new Event('resize'));
+          $('div.modal-overlay').css('background','#fff')
+
+        }
+      })
+
     }
-
-
 
   })
 
@@ -191,4 +209,32 @@ $(document).on('turbolinks:load', function(){
       console.log("about to trigger submit on form after grabbing position")
       $('#user-modal form').trigger('submit')
     }())
+  }
+
+
+  function set_user_coords(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendPos);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+  }
+  function sendPos(position) {
+
+    $.post({
+      url:'/sessions/location',
+      data: {'latitude':position.coords.latitude, 'longitude':position.coords.longitude},
+      success:function(res){
+        if (res.result == "success"){
+          alert("Successfuly set location: " + String(res.coords))
+          location.reload()
+        } else {
+          alert(res.message)
+        }
+
+      }
+    })
+
+    // $('input[name="login[latitude]"]').val(position.coords.latitude);
+    // $('input[name="login[longitude]"]').val(position.coords.longitude).done($('#user-modal form').trigger('submit'))
   }

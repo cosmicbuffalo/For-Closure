@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  layout 'maps.html.erb'
+  
   def index
   end
 

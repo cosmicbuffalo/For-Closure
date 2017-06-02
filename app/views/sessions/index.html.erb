@@ -1,20 +1,25 @@
 <div id="main-content-wrapper">
-  <div id="main-centered-section">
+  <div id="main-centered-section" class="buy">
     <div id="search-wrapper">
       <div class="search-row">
-        <h1>Find your way home</h1>
+        <h1 id="main-title">Find your way home</h1>
       </div>
       <div id="search-selector" class="search-row">
-        <button class="search-option button selected" type="button" name="buy">Buy</button>
-        <button class="search-option button" type="button" name="rent">Rent</button>
-        <button class="search-option button" type="button" name="sell">Sell</button>
-        <button class="search-option button" type="button" name="zestimate">Zestimate</button>
+        <button class="search-option button selected" type="button" name="buy" title="Find your way home">Buy</button>
+        <button class="search-option button" type="button" name="rent" title="Find your next rental">Rent</button>
+        <button class="search-option button" type="button" name="sell" title="Sell your home">Sell</button>
+        <button class="search-option button" type="button" name="zestimate" title="Your home on For-Closure">Zestimate</button>
       </div>
       <div id="search-bar-div" class="search-row">
-        <input type="search" name="search" value="">
-        <div id="search-button-container">
-          <button id="search-button" type="button" name="search">Search</button>
-        </div>
+        <form class="" action="listings/search" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input id="search-option" type="hidden" name="search_option" value="buy">
+          <input type="search" name="search" value="">
+          <div id="search-button-container">
+            <button id="search-button" type="submit" name="search">Search</button>
+          </div>
+        </form>
+
       </div>
     </div>
 

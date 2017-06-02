@@ -1,10 +1,11 @@
 <div id="header">
   <div id="top-bar">
-    <img id="main-logo" src="" alt="Main Logo">
+    <!-- <img id="main-logo" src="/assets/images/for_closure_logo.svg" alt="Main Logo"> -->
+    <a href='/home'><%= image_tag('for_closure_logo.svg', id: 'main-logo') %></a>
     <ul id="main-nav-items" class="nav-items-list">
-      <li>Buy</li>
-      <li>Rent</li>
-      <li>Sell</li>
+      <li><a href="/listings">Buy</a></li>
+      <li><a href="/listings">Rent</a></li>
+      <li><a href="/listings/new">Sell</a></li>
       <li>Mortgages</li>
       <li>Agent Finder</li>
       <li>Home Design</li>
@@ -27,7 +28,8 @@
         <% end %>
       </li>
       <li>
-        <img class="icon"src="" alt="Help Icon">
+        <!-- <img class="icon" src="" alt="Help Icon"> -->
+        <%= image_tag('help_grey_18x18.png', class: 'icon') %>
       </li>
     </ul>
   </div>

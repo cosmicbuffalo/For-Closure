@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy' #logout method
 
 
-
+  get 'users' => 'users#dashboard' #user dashboard
 
   post 'users' => 'users#create' #register method
 
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   get 'listings/new' => 'listings#new' #first page for listing, decides if by owner or by agent based on user, owner if no user is logged in
 
-  get '/listings/info' => 'listings#info' #what is this route for?
+  get 'listings/info' => 'listings#info' #what is this route for?
 
 
   post 'properties/test' => 'properties#test'

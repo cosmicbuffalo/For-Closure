@@ -22,8 +22,10 @@ class ListingsController < ApplicationController
 
   def create
 
-    @image = Image.new(image: params[:image], imageable: Property.first)
-    @image.save
+    # params.permit(images: [])[:images].each do |image|
+    #   @image = Image.new(image: image, imageable: Property.first)
+    #   @image.save
+    # end
     return redirect_to '/maps/new'
 
   end

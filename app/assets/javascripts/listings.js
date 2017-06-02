@@ -5,44 +5,14 @@ $(document).on('turbolinks:load', function () {
 
   tileClick()
 
-  if ($('#location-check').attr('have-location') == 'false'){
-    console.log("couldn't find location, running set_user_coords")
-    set_user_coords();
-  } else{
-    console.log("location is already present")
-  }
+  $('#header').css('padding-left', '0px')
 
 
 
 
 });
 
-function set_user_coords(){
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(sendPos);
-  } else {
-      alert("Geolocation is not supported by this browser.");
-  }
-}
-function sendPos(position) {
 
-  $.post({
-    url:'/sessions/location',
-    data: {'latitude':position.coords.latitude, 'longitude':position.coords.longitude},
-    success:function(res){
-      if (res.result == "success"){
-        alert("Successfuly set location: " + String(res.coords))
-        location.reload
-      } else {
-        alert(res.message)
-      }
-
-    }
-  })
-
-  // $('input[name="login[latitude]"]').val(position.coords.latitude);
-  // $('input[name="login[longitude]"]').val(position.coords.longitude).done($('#user-modal form').trigger('submit'))
-}
 
 
 var map;
@@ -64,7 +34,7 @@ function initMap() {
 
 function renderQueryset(map) {
   $.get({
-    url: 'query',
+    url: '/listings/query',
     dataType: 'json',
     success: function (res) {
      console.log(res)
@@ -126,7 +96,7 @@ function propertyQuery(map, res) {
     google.maps.event.addListener(marker,'click', function(position){
         console.log(this.propId)
         $.get({
-          url: 'info',
+          url: '/listings/info',
           data: {"id": this.propId},
           success: function (res){
             $('#modal1').html(res)
@@ -167,7 +137,7 @@ function tileClick(){
   $("#listings-sidebar").on('click', ".property-tile", function(){
     console.log($(this).attr('property-id'))
     $.get({
-      url: "info",
+      url: "/listings/info",
       data: {"id": $(this).attr('property-id')},
       success: function (res){
             $('#modal1').html(res)

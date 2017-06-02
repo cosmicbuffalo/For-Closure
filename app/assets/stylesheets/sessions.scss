@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$zillowBlue:rgba(0,116,228,1);
 
 #user-modal{
   $width: 448px;
@@ -41,9 +42,6 @@ li.tab a{
 }
 
 
-.hidden{
-  display: none;
-}
 
 input[type="checkbox"]{
   position: static !important;
@@ -63,3 +61,80 @@ input{
     width: 90px;
   }
 }
+
+
+// #main-centered-section{
+//   display: inline-block;
+//   width: 100%;
+//   text-align: center;
+//   /*background-color: lightblue;*/
+//   background: linear-gradient(rgba(80,80,80,0.25),rgba(80,80,80,0.25)), url(buy_background_still.jpg);
+//   background-size: cover;
+//   height: 600px;
+// }
+//
+// #search-wrapper{
+//   display: inline-block;
+//   width: 610px;
+//   position: absolute;
+//   top: 165px;
+//   left: 50%;
+//   margin-left: -305px;
+//
+//   .search-row{
+//     margin-bottom: 12px;
+//   }
+//   .search-row h1{
+//     margin-top: 0px;
+//     margin-bottom: 37px;
+//     font-weight: 500;
+//     font-size: 50px;
+//     color: white;
+//     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+//   }
+//   .search-row input{
+//     width: 100%;
+//     display: inline-block;
+//     padding:17px 115px 19px 20px !important;
+//     border: 0px ;
+//     border-radius: 5px !important;
+//     font-size: 21px !important;
+//     margin-top: 22px !important;
+//     margin-bottom: 0px !important;
+//     background-color: white !important;
+//     height: auto !important;
+//     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5) !important;
+//     box-sizing: border-box !important;
+//   }
+//   #search-button{
+//     float: right;
+//     position: relative;
+//     top: -52px;
+//     right: 8px;
+//     width: 102px;
+//     height: 44px;
+//     padding: 0px 12px;
+//     border-radius: 5px;
+//     background-color: $zillowBlue;
+//     border: 0px;
+//
+//   }
+//   button{
+//     box-sizing: border-box;
+//     color: white !important;
+//     font-size: 16px;
+//   }
+//
+//   .search-option{
+//     width: 25%;
+//     border: 1px solid white;
+//     float:left;
+//     font-size: 17px;
+//     background-color: rgba(0,0,0,.5);
+//     padding: 11px 0px 12px 0px;
+//   }
+//   .search-option.selected{
+//     background-color: opacify($zillowBlue, 0.75);
+//   }
+//
+// }
