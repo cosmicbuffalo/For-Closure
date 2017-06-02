@@ -64,7 +64,7 @@ function initMap() {
 
 function renderQueryset(map) {
   $.get({
-    url: 'listings/query',
+    url: 'query',
     dataType: 'json',
     success: function (res) {
      console.log(res)
@@ -126,7 +126,7 @@ function propertyQuery(map, res) {
     google.maps.event.addListener(marker,'click', function(position){
         console.log(this.propId)
         $.get({
-          url: 'listings/info',
+          url: 'info',
           data: {"id": this.propId},
           success: function (res){
             $('#modal1').html(res)
@@ -167,7 +167,7 @@ function tileClick(){
   $("#listings-sidebar").on('click', ".property-tile", function(){
     console.log($(this).attr('property-id'))
     $.get({
-      url: "listings/info",
+      url: "info",
       data: {"id": $(this).attr('property-id')},
       success: function (res){
             $('#modal1').html(res)
