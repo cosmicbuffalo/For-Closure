@@ -6,9 +6,7 @@ Rails.application.routes.draw do
 
 
 
-  post '/listings/create' => 'listings#create'
 
-  get 'users/new' => 'users#new'
 
   get 'front_end_testing/index'
 
@@ -16,51 +14,57 @@ Rails.application.routes.draw do
 
 
 
-  get 'home' => 'sessions#index'
+  get 'home' => 'sessions#index' #home page with search bar selector
 
-  get 'home/login' => 'sessions#new'
+  # get 'sessions/new' => 'sessions#new' #get modal partial set to login tab
 
-  post 'sessions' => 'sessions#create'
+  post 'sessions/location' => 'sessions#set_user_coords'
 
+  post 'sessions' => 'sessions#create' #login method
 
-
-
-  post 'users' => 'users#create'
-
-  get 'users/get_user_modal' => 'users#get_user_modal'
-
-  get 'home/register' => 'users#new'
-
-  get 'users/:user_id' => 'users#show'
+  get 'logout' => 'sessions#destroy' #logout method
 
 
 
-  post 'listings/search' => 'listings#search'
 
-  get'listings/query' => 'listings#query'
+  post 'users' => 'users#create' #register method
 
-  get 'listings' => 'listings#index'
+  get 'users/get_user_modal' => 'users#get_user_modal' #used to get user modal for either login or register with flash errors
 
-  get 'listings/home' => 'listings#index'
+  get 'users/new' => 'users#new' #get modal partial set to register tab
 
-  post 'listings/filter' => 'listings#filter'
+  get 'users/:user_id' => 'users#show' #might need to take this out, ideally we should be able to view sellers' profiles and see the properties they've listed
 
-  get 'listings/new' => 'listings#new'
 
-  get '/listings/info' => 'listings#info'
+
+  post 'listings/search' => 'listings#search' #search bar's action method
+
+  get 'listings/query' => 'listings#query' #get partial for listing details
+
+  get 'listings' => 'listings#index' #main map view
+
+  get 'listings/home' => 'listings#index' #also main map view
+
+  post 'listings/filter' => 'listings#filter' #soon to be method to filter search results, might not be ajaxified yet
+
+  post 'listings/create' => 'listings#create' #are we even using this?
+
+  get 'listings/new' => 'listings#new' #first page for listing, decides if by owner or by agent based on user, owner if no user is logged in
+
+  get '/listings/info' => 'listings#info' #what is this route for?
 
 
   post 'properties/test' => 'properties#test'
 
-  post 'properties/new' => 'properties#start_listing'
+  post 'properties/new' => 'properties#start_listing' #post destination from listings/new page, saves listing in progress in session and redirects to properties/new
 
-  get 'properties/new' => 'properties#new'
+  get 'properties/new' => 'properties#new' #property/listing creation details page, so many checkboxes
 
-  get 'properties/:property_id' => 'properties#show'
+  get 'properties/:property_id' => 'properties#show' # property show? is this in a partial already?
 
-  post 'properties' => 'properties#create'
+  post 'properties' => 'properties#create' #property creation method for form on properties/new page
 
-  get 'properties/:property_id/edit' => 'properties#edit'
+  get 'properties/:property_id/edit' => 'properties#edit' #need to implement property edit page
 
   patch 'properties/:property_id' => 'properties#update'
 

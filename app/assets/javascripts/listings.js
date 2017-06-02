@@ -1,13 +1,48 @@
-$(document).ready(function () {
+$(document).on('turbolinks:load', function () {
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('#modal1').modal();
   $('.materialboxed').materialbox();
-  
+
   tileClick()
-  
+
+  if ($('#location-check').attr('have-location') == 'false'){
+    console.log("couldn't find location, running set_user_coords")
+    set_user_coords();
+  } else{
+    console.log("location is already present")
+  }
+
+
+
+
 });
 
+function set_user_coords(){
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(sendPos);
+  } else {
+      alert("Geolocation is not supported by this browser.");
+  }
+}
+function sendPos(position) {
 
+  $.post({
+    url:'/sessions/location',
+    data: {'latitude':position.coords.latitude, 'longitude':position.coords.longitude},
+    success:function(res){
+      if (res.result == "success"){
+        alert("Successfuly set location: " + String(res.coords))
+        location.reload
+      } else {
+        alert(res.message)
+      }
+
+    }
+  })
+
+  // $('input[name="login[latitude]"]').val(position.coords.latitude);
+  // $('input[name="login[longitude]"]').val(position.coords.longitude).done($('#user-modal form').trigger('submit'))
+}
 
 
 var map;
@@ -16,11 +51,11 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
-    //  
+    //
   });
-  
+
   renderQueryset(map)
-  
+
 
 }
 
@@ -46,7 +81,7 @@ function propertyQuery(map, res) {
 
     var myLatLng = new google.maps.LatLng(res[i].latitude, res[i].longitude);
 
-    
+
     if (res[i].rent == false){
       var priceString = "$"+res[i].price
     }
@@ -117,7 +152,7 @@ function propertyQuery(map, res) {
             // $('#address-list-type').replaceWith(addressListType)
             // $('#address-price').replaceWith(addressPrice)
 
-           
+
 
 
           }

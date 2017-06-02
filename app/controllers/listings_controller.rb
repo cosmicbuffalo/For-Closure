@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
   end
   def new
     @image = Property.all
-    
+
   end
 
   def create

@@ -1,7 +1,7 @@
 <div id="header">
   <div id="top-bar">
     <img id="main-logo" src="" alt="Main Logo">
-    <ul id="main-nav-items">
+    <ul id="main-nav-items" class="nav-items-list">
       <li>Buy</li>
       <li>Rent</li>
       <li>Sell</li>
@@ -10,12 +10,40 @@
       <li>Home Design</li>
       <li>More</li>
     </ul>
-    <ul id="session-nav-items">
+    <ul id="session-nav-items" class="nav-items-list">
       <li>Advertise</li>
-      <li><a href="/sessions">Sign</a> in or <a href="/users">Join</a></li>
+      <li>
+        <% unless session[:user_id] %>
+        <a class="user-modal-link" href="/sessions/new">Sign in</a>
+        <span>or</span>
+        <a class="user-modal-link" href="/users/new">Join</a>
+        <% else %>
+          <a id="hub-link" class="dropdown-button" data-activates="hub-dropdown" href="/users/<%= current_user.id %>">
+            <%= 'Agent' if current_user.agent %>
+            <%= 'Landlord' if current_user.landlord %>
+            <%= 'Seller' unless current_user.agent || current_user.agent %>
+            Hub
+          </a>
+        <% end %>
+      </li>
       <li>
         <img class="icon"src="" alt="Help Icon">
       </li>
     </ul>
   </div>
 </div>
+<!-- Dropdown Structure -->
+  <div id='hub-dropdown' class='dropdown-content'>
+    <div id="upper-drop-section" class="drop-section">
+      <h5>My Hub</h5>
+      <a href="#">Dashboard</a>
+      <a href="#">Profile</a>
+      <a href="#">Listings(<%= current_user ? current_user.properties.count : 0 %>)</a>
+      <a href="#">Inbox</a>
+    </div>
+    <div class="divider"></div>
+    <div id="lower-drop-section" class="drop-section">
+      <a href="/logout" >Sign out</a>
+    </div>
+
+  </div>

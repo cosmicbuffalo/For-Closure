@@ -1,13 +1,13 @@
 
-    <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0]%>" longitude="<%= session[:user_coords][1]%>"></div>
-    <div id="filter-bar"> 
-    
-    
-    
+    <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0] if session[:user_coords]%>" longitude="<%= session[:user_coords][1] if session[:user_coords]%>"></div>
+    <div id="filter-bar">
+
+
+
     </div>
     <div id="map"></div>
     <div id="listings-sidebar">
-    
+
     <%= render partial: "partials/listing_tiles"%>
 
     </div>
@@ -16,13 +16,7 @@
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
-  
-    <%= render partial: "partials/listing_details"%>
-      
+
+    <%= render partial: "partials/listing_details" %>
+
   </div>
-
-    
-
-    
-    
-    
