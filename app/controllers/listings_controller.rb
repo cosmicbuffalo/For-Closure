@@ -2,11 +2,27 @@ class ListingsController < ApplicationController
  layout 'maps.html.erb'
   def index
     # set these sessions to the proper geolocations
-    puts session[:latitude]
-    puts session[:longitude]
+    
     @properties = Property.all
 
   end
+
+  def search
+    if params[:location].present?
+      @coordinates = Geocoder.coordinates(params[:location])
+      session[:user_coords][0] = @coordinates[0]
+      session[:user_coords][1] = @coordinates[1]
+    end
+    return redirect_to '/listings'
+  end
+
+  def partial_search
+    @look_up_location = Geocoder.coordinates(params[:location])
+    render json: @look_up_location
+
+  end
+
+
 
 
   def query

@@ -1,9 +1,16 @@
 
-    <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0]%>" longitude="<%= session[:user_coords][1]%>"></div>
+   <div id="hiddenDiv" type="hidden" marker="<%= asset_path( 'home_icon.svg' ) %>" latitude="<%= session[:user_coords][0]%>" longitude="<%= session[:user_coords][1]%>"></div>
+
     <div id="filter-bar"> 
-    
-    
-    
+      <div id="search-bar">
+
+      <form action="/listings/partial_search" method="post" id="search-form">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="text" id="search-bar-input"style="font-size:13px;"placeholder="Address, City, or ZIP" name="location">
+          <button id="map-search-button" type="submit"><i class="small material-icons">search</i></button>
+      </form>
+      </div>
+  
     </div>
     <div id="map"></div>
     <div id="listings-sidebar">
@@ -11,7 +18,10 @@
     <%= render partial: "partials/listing_tiles"%>
 
     </div>
+
+    <div id="google-maps-partial">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw&callback=initMap" type="text/javascript"></script>
+    </div>
 
 
   <!-- Modal Structure -->
@@ -20,9 +30,27 @@
     <%= render partial: "partials/listing_details"%>
       
   </div>
+  
 
     
-
+<%#
+     $('#map-search-button').on("click", function(e){
+    e.preventDefault()
+    console.log($("#search-bar-input").serialize())
     
+    $.post({
+        url: '/listings/partial_search',
+        data: $("#search-bar-input").serialize(),
+        dataType: 'json',
+        success: function(res){
+          console.log(res)
+          map.setCenter(res[0],res[1])
+
+        }
+
+      })
+
+
+  })%>
     
     

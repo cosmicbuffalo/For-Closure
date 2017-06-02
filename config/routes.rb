@@ -37,9 +37,10 @@ Rails.application.routes.draw do
 
   post 'listings/search' => 'listings#search'
 
-  get'listings/query' => 'listings#query'
+  get'/query' => 'listings#query'
 
   get 'listings' => 'listings#index'
+  
 
   get 'listings/home' => 'listings#index'
 
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
   get 'listings/new' => 'listings#new'
 
   get '/listings/info' => 'listings#info'
+  
+  post 'listings/partial_search' => 'listings#partial_search'
 
 
   post 'properties/test' => 'properties#test'

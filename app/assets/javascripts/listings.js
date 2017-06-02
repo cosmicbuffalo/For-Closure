@@ -1,19 +1,13 @@
-$(document).ready(function () {
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('#modal1').modal();
-  $('.materialboxed').materialbox();
-  
-  tileClick()
-  
-});
 
 
 
 
 var map;
-function initMap() {
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+function initMap() {
+  
+
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
     //  
@@ -91,7 +85,7 @@ function propertyQuery(map, res) {
     google.maps.event.addListener(marker,'click', function(position){
         console.log(this.propId)
         $.get({
-          url: 'info',
+          url: 'listings/info',
           data: {"id": this.propId},
           success: function (res){
             $('#modal1').html(res)
@@ -124,6 +118,12 @@ function propertyQuery(map, res) {
         })
         $('#modal1').modal('open');
       });
+      google.maps.event.addListener($('#map-search-button'),"click", function(e){
+        e.preventDefault()
+        console.log('yay')
+
+
+      });
 
   }
 }
@@ -132,7 +132,7 @@ function tileClick(){
   $("#listings-sidebar").on('click', ".property-tile", function(){
     console.log($(this).attr('property-id'))
     $.get({
-      url: "info",
+      url: "/listings/info",
       data: {"id": $(this).attr('property-id')},
       success: function (res){
             $('#modal1').html(res)
@@ -143,3 +143,51 @@ function tileClick(){
     $('#modal1').modal('open');
   })
 }
+function newLocation(newLat,newLng)
+{ console.log('fdfadsf');//25.7616798, -80.1917902
+	map.panTo(newLat,newLng);
+}
+
+$(document).ready(function () {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('#modal1').modal();
+  $('.materialboxed').materialbox();
+  
+  tileClick()
+
+  $(document).on("click",'#map-search-button', function(e){
+    e.preventDefault();
+    console.log($("#search-bar-input").serialize());
+    $.post({
+        url: '/listings/partial_search',
+        data: $("#search-bar-input").serialize(),
+        dataType: 'json',
+        success: function(res){
+          console.log(res);
+          newLocation(res[0],res[1]);
+
+//set center
+
+        }
+
+      })
+
+
+  })
+
+
+  //Trying to give the parent div a shadow when the search bar is selected.
+  // $('#search-bar > *')
+  //   .focus(function(){
+  //     console.log("yay")
+  //     $('#search-bar').addClass('.focused')
+  // })
+  // .blur(function(){
+  //     console.log("yay")
+  //     $('#search-bar').removeClass('.focused')
+  // })
+
+  
+});
+
+
