@@ -1,5 +1,11 @@
 class Property < ActiveRecord::Base
   belongs_to :user
+
+
+  has_many :favorites
+  has_many :users_that_favorited , through: :favorites, source: :user
+
+
   belongs_to :home_type
   has_many :categorizations
   has_many :categories, through: :categorizations
@@ -9,13 +15,8 @@ class Property < ActiveRecord::Base
 
   validates :address, presence: :true, uniqueness: { case_sensitive: false }
   validates :price, presence: :true
-  # validates :description, length: { minimum: 1 }
 
-  # before_validation :downcase_address
 
-  # def downcase_address
-  #   self.address.downcase!
-  # end
 
   geocoded_by :address
   after_validation :geocode
