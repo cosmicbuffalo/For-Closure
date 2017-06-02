@@ -1,19 +1,19 @@
 
 
-function set_user_coords(){
+function set_user_coords() {
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(sendPos);
+    navigator.geolocation.getCurrentPosition(sendPos);
   } else {
-      alert("Geolocation is not supported by this browser.");
+    alert("Geolocation is not supported by this browser.");
   }
 }
 function sendPos(position) {
 
   $.post({
-    url:'/sessions/location',
-    data: {'latitude':position.coords.latitude, 'longitude':position.coords.longitude},
-    success:function(res){
-      if (res.result == "success"){
+    url: '/sessions/location',
+    data: { 'latitude': position.coords.latitude, 'longitude': position.coords.longitude },
+    success: function (res) {
+      if (res.result == "success") {
         alert("Successfuly set location: " + String(res.coords))
         location.reload
       } else {
@@ -22,94 +22,94 @@ function sendPos(position) {
 
     }
   })
-
 }
 
 
-var map;
 
-function initMap() {
+  var map;
 
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
-    //
-  });
-
-  renderQueryset(map)
+  function initMap() {
 
 
-}
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
+      //
+    });
+
+    renderQueryset(map)
 
 
-function renderQueryset(map) {
-  $.get({
-    url: '/listings/query',
-    dataType: 'json',
-    success: function (res) {
-     console.log(res)
-      propertyQuery(map, res)
-    }
-  })
-}
+  }
 
 
-// Multipurpose function!
-function propertyQuery(map, res) {
-  var bounds = new google.maps.LatLngBounds();
-  for (var i = 0; i < res.length; i++) {
-
-    var myLatLng = new google.maps.LatLng(res[i].latitude, res[i].longitude);
-
-
-    if (res[i].rent == false){
-      var priceString = "$"+res[i].price
-    }
-    else{
-      var priceString = "$" + res[i].price + "/mo"
-    }
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      icon: new google.maps.MarkerImage($('#hiddenDiv').attr("marker"),
-      null, /* size is determined at runtime */
-      null, /* origin is 0,0 */
-      null, /* anchor is bottom center of the scaled image */
-      new google.maps.Size(25, 25)
-    ),
-      propId: res[i].id
-
+  function renderQueryset(map) {
+    $.get({
+      url: '/listings/query',
+      dataType: 'json',
+      success: function (res) {
+        console.log(res)
+        propertyQuery(map, res)
+      }
     })
-  try{
-    var content = '<img  src="'+ res[i].images[0].image.url+ '"alt= "Nothin" height="45">';
   }
 
-  catch (err) {
-    var content = '<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt= "Nothin" height="45">'
-  }
 
-  content += '<div class="hover-info"><ul> <li>' + priceString +"</li><br>" + "<li>"+res[i].bedroom +"bd | " + res[i].bathroom + "br</li><br>" +"<li>" + res[i].square_feet +" sqft </li>" + "</div>";
-    var infowindow = new google.maps.InfoWindow()
+  // Multipurpose function!
+  function propertyQuery(map, res) {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < res.length; i++) {
 
-    google.maps.event.addListener(marker, 'mouseover', (function (marker, content, infowindow) {
-      return function () {
-        infowindow.setContent(content);
-        infowindow.open(map, marker);
-      };
-    })(marker, content, infowindow));
-    google.maps.event.addListener(marker, 'mouseout', (function (marker, content, infowindow) {
-      return function () {
-        infowindow.close();
-      };
-    })(marker, content, infowindow));
+      var myLatLng = new google.maps.LatLng(res[i].latitude, res[i].longitude);
 
-    google.maps.event.addListener(marker,'click', function(position){
+
+      if (res[i].rent == false) {
+        var priceString = "$" + res[i].price
+      }
+      else {
+        var priceString = "$" + res[i].price + "/mo"
+      }
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: new google.maps.MarkerImage($('#hiddenDiv').attr("marker"),
+          null, /* size is determined at runtime */
+          null, /* origin is 0,0 */
+          null, /* anchor is bottom center of the scaled image */
+          new google.maps.Size(25, 25)
+        ),
+        propId: res[i].id
+
+      })
+      try {
+        var content = '<img  src="' + res[i].images[0].image.url + '"alt= "Nothin" height="45">';
+      }
+
+      catch (err) {
+        var content = '<img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt= "Nothin" height="45">'
+      }
+
+      content += '<div class="hover-info"><ul> <li>' + priceString + "</li><br>" + "<li>" + res[i].bedroom + "bd | " + res[i].bathroom + "br</li><br>" + "<li>" + res[i].square_feet + " sqft </li>" + "</div>";
+      var infowindow = new google.maps.InfoWindow()
+
+      google.maps.event.addListener(marker, 'mouseover', (function (marker, content, infowindow) {
+        return function () {
+          infowindow.setContent(content);
+          infowindow.open(map, marker);
+        };
+      })(marker, content, infowindow));
+      google.maps.event.addListener(marker, 'mouseout', (function (marker, content, infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      })(marker, content, infowindow));
+
+      google.maps.event.addListener(marker, 'click', function (position) {
         console.log(this.propId)
         $.get({
           url: '/listings/info',
-          data: {"id": this.propId},
-          success: function (res){
+          data: { "id": this.propId },
+          success: function (res) {
             $('#modal1').html(res)
             $('.materialboxed').materialbox();
             // Spilting up the replaces to better organize
@@ -139,85 +139,87 @@ function propertyQuery(map, res) {
           }
         })
         $('#modal1').modal('open');
-    });
-    google.maps.event.addListener($('#map-search-button'),"click", function(e){
+
+      });
+      google.maps.event.addListener($('#map-search-button'), "click", function (e) {
         e.preventDefault()
         console.log('yay')
 
 
       });
 
+    }
   }
-}
 
-function tileClick(){
-  $("#listings-sidebar").on('click', ".property-tile", function(){
-    console.log($(this).attr('property-id'))
-    $.get({
-      url: "/listings/info",
-      data: {"id": $(this).attr('property-id')},
-      success: function (res){
-            $('#modal1').html(res)
-            $('.materialboxed').materialbox();
-      }
+  function tileClick() {
+    $("#listings-sidebar").on('click', ".property-tile", function () {
+      console.log($(this).attr('property-id'))
+      $.get({
+        url: "/listings/info",
+        data: { "id": $(this).attr('property-id') },
+        success: function (res) {
+          $('#modal1').html(res)
+          $('.materialboxed').materialbox();
+        }
 
+      })
+      $('#modal1').modal('open');
     })
-    $('#modal1').modal('open');
-  })
-}
+  }
 
-function newLocation(newLat,newLng){
-  console.log('fdfadsf');//25.7616798, -80.1917902
-	map.panTo({lat: newLat, lng: newLng});
-}
-
-$(document).on('turbolinks:load',function () {
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('#modal1').modal();
-  $('.materialboxed').materialbox();
-
-  tileClick()
-
-  $('#header').css('padding-left', '0px')
-
-
-  if ($('#location-check').attr('have-location') == 'false'){
-    console.log("couldn't find location, running set_user_coords")
-    set_user_coords();
-  } else{
-    console.log("location is already present")
+  function newLocation(newLat,newLng){
+    console.log('fdfadsf');//25.7616798, -80.1917902
+  	map.panTo({lat: newLat, lng: newLng});
   }
 
 
-  $(document).on("click",'#map-search-button', function(e){
-    e.preventDefault();
-    console.log($("#search-bar-input").serialize());
-    $.post({
+  $(document).on('turbolinks:load', function () {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('#modal1').modal();
+    $('.materialboxed').materialbox();
+
+    tileClick()
+
+    $('#header').css('padding-left', '0px')
+
+
+    if ($('#location-check').attr('have-location') == 'false') {
+      console.log("couldn't find location, running set_user_coords")
+      set_user_coords();
+    } else {
+      console.log("location is already present")
+    }
+
+
+    $(document).on("click", '#map-search-button', function (e) {
+      e.preventDefault();
+      console.log($("#search-bar-input").serialize());
+      $.post({
         url: '/listings/partial_search',
         data: $("#search-bar-input").serialize(),
         dataType: 'json',
-        success: function(res){
+        success: function (res) {
           console.log(res);
-          newLocation(res[0],res[1]);
+          newLocation(res[0], res[1]);
 
         }
 
       })
 
 
-  })
+    })
 
 
-  //Trying to give the parent div a shadow when the search bar is selected.
-  // $('#search-bar > *')
-  //   .focus(function(){
-  //     console.log("yay")
-  //     $('#search-bar').addClass('.focused')
-  // })
-  // .blur(function(){
-  //     console.log("yay")
-  //     $('#search-bar').removeClass('.focused')
-  // })
+    //Trying to give the parent div a shadow when the search bar is selected.
+    // $('#search-bar > *')
+    //   .focus(function(){
+    //     console.log("yay")
+    //     $('#search-bar').addClass('.focused')
+    // })
+    // .blur(function(){
+    //     console.log("yay")
+    //     $('#search-bar').removeClass('.focused')
+    // })
 
 
-});
+  });
