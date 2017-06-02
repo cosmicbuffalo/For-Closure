@@ -3,47 +3,54 @@
     <div class="modal-content">
       <div class="scrollmenu">
         <div class = 'image-sizing'>
-            <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%=@property.latitude%>,<%=@property.longitude%>&zoom=18&size=600x300&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C<%=@property.latitude%>,<%=@property.longitude%>&redmaptype=roadmap&key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw" alt="">
+          <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%=@property.latitude%>,<%=@property.longitude%>&zoom=18&size=600x300&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C<%=@property.latitude%>,<%=@property.longitude%>&redmaptype=roadmap&key=AIzaSyBA-qD9GOPa0R8ivtu1fUf5J4QkHsmyrqw" alt="">
         </div>
         <% if @property_images.count > 0 %>
-
-            <% @property_images.each do |image| %>
-                    <div class = 'image-sizing'>
-                        <img class="materialboxed" src="<%= image.image.url%>" alt="Property Images">
-                    </div>
-
-            <% end %>
-
-        <% else %>
-
+          <% @property_images.each do |image| %>
             <div class = 'image-sizing'>
-                <img class="materialboxed" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="">
-                
+              <img class="materialboxed" src="<%= image.image.url%>" alt="Property Images">
             </div>
-
+          <% end %>
+        <% else %>
+          <div class = 'image-sizing'>
+            <img class="materialboxed" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="">
+          </div>
         <% end %>
-        
       </div>
       <div id="buyer-info">
-        <% if @property.rent == false %>
-            <h5> id="address-list-type">For Sale</h5>
-            <h5 id="address-price">$<%=@property.price%></h5>
+        <% unless @property.rent %>
+          <h5 id="address-list-type">For Sale</h5>
+          <h5 id="address-price">$<%=@property.price%></h5>
         <% else %>
-            <h5 id="address-list-type">For Rent</h5>
-            <h5 id="address-price">$<%=@property.price%> /mo</h5>
+          <h5 id="address-list-type">For Rent</h5>
+          <h5 id="address-price">$<%=@property.price%> /mo</h5>
         <% end %>
       </div>
       <div id="contact-agent">
-        <p>Contact Agent</p>
+        <% if @property.user.agent %>
+          <p>Contact Agent</p>
+        <% elsif @property.user.landlord %>
+          <p>Contact Agent</p>
+        <% else %>
+          <p>Contact Owner</p>
+        <% end %>
         <img src="https://pbs.twimg.com/profile_images/802525846879670272/0QfWiKAO.jpg" height="40" alt="">
         <div id="agent-info">
-            <p>Mr. Smith </p>
-            <p>(773)441-8270</p>
+          <% if @property.user.first_name && @property.user.last_name%>
+          <p><%= @property.user.first_name %> <%= @property.user.last_name %></p>
+          <% end %>
+          <% if @property.user.phone_number %>
+            <p><%= @property.user.phone_number %></p>
+          <%elsif @property.contact_number %>
+            <p><%= @property.contact_number %></p>
+          <% else %>
+            <p>No contact info provided</p>
+          <%end%>
         </div><br>
         <!-- of Judy Smith -->
         <form action="/send-message">
-            <textarea name="message" id="" cols="30" rows="15">I am interested in <%=@property.address%></textarea>
-            <button type="submit">Send Message</button>
+          <textarea name="message" id="" cols="30" rows="15">I am interested in <%=@property.address%></textarea>
+          <button type="submit">Send Message</button>
         </form>
 
 
@@ -52,13 +59,242 @@
       <p id="address-details"><%=@property.bedroom%>bd | <%=@property.bathroom%>br | <%=@property.square_feet%> sqft</p>
       <p id="address-description"><%=@property.description%></p>
       <h5>Facts and Features</h5>
-      <table>
-        <tr>
-          <th>
+      <div id="category-details-div">
 
-          </th>
+      <table class="features-section">
+        <tr>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="type-icon">
+            <div class="feature-text">
+              <label>Type</label>
+              <% if @property.home_type %>
+                <p><%= @property.home_type.home_type %></p>
+              <% else %>
+                <p>No data</p>
+              <% end %>
+            </div>
+          </td>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="year-icon">
+            <div class="feature-text">
+              <label>Year Built</label>
+              <!-- <% if @property %>
+                <p><%= @property %></p>
+              <% else %> -->
+                <p>No data</p>
+              <!-- <% end %> -->
+            </div>
+          </td>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="heating-icon">
+            <div class="feature-text">
+              <label>Heating</label>
+              <% if @property.get_category_details('heating') %>
+                <p><%= @property.get_category_details('heating') %></p>
+              <% else %>
+                <p>No data</p>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="cooling-icon">
+            <div class="feature-text">
+              <label>Cooling</label>
+              <% if @property.get_category_details('cooling') %>
+                <p><%= @property.get_category_details('cooling') %></p>
+              <% else %>
+                <p>No data</p>
+              <% end %>
+            </div>
+          </td>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="parking-icon">
+            <div class="feature-text">
+              <label>Parking</label>
+              <% if @property.get_category_details('parking') %>
+                <p><%= @property.get_category_details('parking') %></p>
+              <% else %>
+                <p>No data</p>
+              <% end %>
+            </div>
+          </td>
+          <td class="features-cell">
+            <img class="feature-icon" src="" alt="type-icon">
+            <div class="feature-text">
+              <label>Lot</label>
+              <% if @property.square_feet %>
+                <p><%= @property.square_feet %> sqft</p>
+              <% else %>
+                <p>No data</p>
+              <% end %>
+            </div>
+          </td>
         </tr>
       </table>
+
+
+
+
+
+        <div class="features-section">
+          <h6>INTERIOR FEATURES</h6>
+          <div class="features-column">
+            <% if @property.bedroom %>
+            <div class="feature-group">
+              <label>Bedrooms</label>
+              <p><span class="sub-label">Beds:</span> <%= @property.bedroom %></p>
+            </div>
+            <% end %>
+            <% if @property.bathroom %>
+            <div class="feature-group">
+              <label>Bathrooms</label>
+              <p><span class="sub-label">Baths:</span> <%= @property.bathroom %></p>
+            </div>
+            <% end %>
+            <% heating_details = @property.get_category_details('heating') %>
+            <% cooling_details = @property.get_category_details('cooling') %>
+            <% if heating_details || cooling_details %>
+            <div class="feature-group">
+              <label>Heating and Cooling</label>
+              <% if heating_details %>
+                <p><span class="sub-label">Heating:</span> <%= heating_details %></p>
+              <% end %>
+              <% if cooling_details %>
+                <p><span class="sub-label">Cooling:</span> <%= cooling_details %></p>
+              <% end %>
+            </div>
+            <% end %>
+            <% if @property.get_category_details('basement') %>
+            <div class="feature-group">
+              <label>Basement</label>
+              <p><%= @property.get_category_details('basement') %> basement</p>
+            </div>
+            <% end %>
+
+          </div>
+          <div class="features-column">
+            <% if @property.get_category_details('appliance') %>
+            <div class="feature-group">
+              <label>Appliances</label>
+              <p><span class="sub-label">Appliances included:</span> <%= @property.get_category_details('appliance') %></p>
+            </div>
+            <% end %>
+            <% if @property.get_category_details('floor') %>
+            <div class="feature-group">
+              <label>Flooring</label>
+              <p><span class="sub-label">Flooring:</span> <%= @property.get_category_details('floor') %></p>
+            </div>
+            <% end %>
+            <% if @property.get_category_details('interior') %>
+            <div class="feature-group">
+              <label>Other Interior Features</label>
+              <p><%= @property.get_category_details('interior') %></p>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+
+
+        <% if @property.get_category_details('room') || @property.get_category_details('amenities') %>
+        <div class="features-section">
+          <h6>SPACES AND AMENITIES</h6>
+          <% if @property.get_category_details('room') %>
+          <div class="features-column">
+            <div class="feature-group">
+              <label>Rooms</label>
+              <% @property.get_category_details('room').split(', ').each do |room| %>
+              <p><%= room %></p>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+          <% if @property.get_category_details('amenities')%>
+          <div class="features-column">
+            <div class="feature-group">
+              <label>Amenities</label>
+              <% @property.get_category_details('amenities').split(', ').each do |room| %>
+              <p><%= room %></p>
+              <% end %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+
+        <div class="features-section">
+          <h6>CONSTRUCTION</h6>
+
+          <div class="features-column">
+            <div class="feature-group">
+              <label>Type and Style</label>
+              <% if @property.get_category_details('architecture') %>
+                <p><span class="sub-label">Architecture:</span> <%= @property.get_category_details('architecture') %></p>
+              <% end %>
+
+              <% if @property.home_type %>
+                <p><%= @property.home_type.home_type %></p>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="features-column">
+            <div class="feature-group">
+              <label>Materials</label>
+              <% if @property.get_category_details('roof') %>
+                <p><span class="sub-label">Roof:</span> <%= @property.get_category_details('roof') %></p>
+              <% end %>
+              <% if @property.get_category_details('exterior') %>
+                <p><span class="sub-label">Exterior material:</span> <%= @property.get_category_details('exterior') %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h6>EXTERIOR FEATURES</h6>
+
+          <% if @property.get_category_details('outdoor')%>
+            <div class="feature-group">
+              <% @property.get_category_details('outdoor').split(', ').each do |outdoor| %>
+                <div class="features-column">
+                  <p><%= outdoor %></p>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="feature-group">
+              <p>None</p>
+            </div>
+          <% end %>
+
+        </div>
+
+        <% if @property.get_category_details('parking')%>
+          <div class="features-section">
+            <div class="feature-group">
+              <h6>PARKING</h6>
+              <p><span class="sub-label">Parking:</span> <%= @property.get_category_details('parking') %></p>
+              </div>
+          </div>
+        <% end %>
+
+        <% if @property.get_category_details('fuel')%>
+          <div class="features-section">
+            <div class="feature-group">
+              <h6>Utilities</h6>
+              <p><span class="sub-label">Heating fuel:</span> <%= @property.get_category_details('fuel') %></p>
+              </div>
+          </div>
+        <% end %>
+
+
+
+
+
+      </div>
 
 </div>
 <%end%>

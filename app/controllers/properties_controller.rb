@@ -36,6 +36,23 @@ class PropertiesController < ApplicationController
 
     if @property.save
       session[:property_in_progress] = nil
+
+      category_params.each do |category, display|
+
+        @category = Category.find_by_category(category)
+        unless @category
+          @category = Category.create(category:category, display:display)
+        end
+        Categorization.create(property:@property, category:@category)
+        # begin
+        #   @category = Category.find_by_category(category)
+        # rescue
+        #   @category = Category.create(category:category, display:display)
+        # ensure
+        #   Categorization.create(property:@property, category:@category)
+        # end
+      end
+
       return redirect_to '/maps/index'
     else
       flash[:errors] = @property.errors
@@ -53,6 +70,12 @@ class PropertiesController < ApplicationController
   end
 
   def update
+  end
+
+  def test
+
+    render json: category_params
+
   end
 
   private
@@ -105,6 +128,12 @@ class PropertiesController < ApplicationController
       end
 
       return property_params
+    end
+
+    def category_params
+
+      params.require(:category)
+
     end
 
 

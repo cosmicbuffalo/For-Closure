@@ -14,3 +14,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function(){
+
+  $('#session-nav-items').on('click', 'a', function(e){
+
+    e.preventDefault();
+
+    //need to put code here to render login/register form in partial on modal
+
+
+
+
+  })
+
+
+
+
+
+
+})

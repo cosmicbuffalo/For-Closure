@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
- 
 
 
-  
+
+
 
   post '/listings/create' => 'listings#create'
 
@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get '/listings/info' => 'listings#info'
 
 
+  post 'properties/test' => 'properties#test'
+
   post 'properties/new' => 'properties#start_listing'
 
   get 'properties/new' => 'properties#new'
@@ -61,6 +63,7 @@ Rails.application.routes.draw do
   get 'properties/:property_id/edit' => 'properties#edit'
 
   patch 'properties/:property_id' => 'properties#update'
+
 
 
 
