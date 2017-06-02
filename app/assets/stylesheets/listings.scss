@@ -126,7 +126,8 @@ div.scrollmenu .material-placeholder{
 
 #modal1{
 
-  width: 80% !important;
+
+  width: 60% !important;
   height: 90% !important;
   max-height: 90% !important;
   overflow-y: scroll !important;
@@ -255,12 +256,60 @@ div.scrollmenu .material-placeholder{
   background-color: #e2effc;
   position: relative;
   z-index: 1;
-  box-shadow: 0px 0px 20px #888888
+  box-shadow: 0px 0px 20px #888888;
+  
+
+
+  #search-bar{
+    margin-top: 65px;
+    margin-left: 125px;
+    outline: 1px solid grey;
+    display: inline-block;
+
+    input[type="text"] {
+      width: 200px;
+      height: 29px;
+      padding:0px 50px 0px 0px;
+      margin: 0;
+      background: white;
+      border: 0px;
+      transition: all 0.30s ease-in-out; 
+    }
+    input[type=text]:focus {
+      box-shadow: 0px 0px 15px #020be0;
+      
+    }
+
+
+
+
+
+
+    button[type="submit"] {
+        margin: 0px 0px 0px -50px;
+        padding: 0;
+        height: 29px;
+        width: 50px;
+        vertical-align: top;
+        background: white;
+        color: blue;
+        border: 0;
+        -webkit-appearance: none;
+    }
+    button[type="submit"]:hover{
+      color: #7BC0FF;
+    }
+  }
 
 }
-
+.property-tile:hover{
+    box-shadow: 0px 0px 50px #5b5b5b;
+    transition: all 0.30s ease-in-out;
+    
+  }
 .property-tile{
   height:20%;
+
   width:47.7%;
   white-space: nowrap;
   overflow: hidden;
@@ -270,6 +319,7 @@ div.scrollmenu .material-placeholder{
   margin-right: -1%;
   position: relative;
   vertical-align: top;
+  transition: all 0.45s ease-in-out;
   background-position: center;
   background-size: cover;
   color: white;

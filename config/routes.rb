@@ -37,21 +37,27 @@ Rails.application.routes.draw do
 
 
 
+  get'/query' => 'listings#query'
+
+  get 'listings' => 'listings#index'
+
+
   post 'listings/search' => 'listings#search' #search bar's action method
+
 
   get 'listings/query' => 'listings#query' #get partial for listing details
 
   get 'listings' => 'listings#index' #main map view
 
-  get 'listings/home' => 'listings#index' #also main map view
+  get '/listings/info' => 'listings#info'
+
+  post 'listings/partial_search' => 'listings#partial_search'
 
   post 'listings/filter' => 'listings#filter' #soon to be method to filter search results, might not be ajaxified yet
 
   post 'listings/create' => 'listings#create' #are we even using this?
 
   get 'listings/new' => 'listings#new' #first page for listing, decides if by owner or by agent based on user, owner if no user is logged in
-
-  get 'listings/info' => 'listings#info' #what is this route for?
 
 
   post 'properties/test' => 'properties#test'

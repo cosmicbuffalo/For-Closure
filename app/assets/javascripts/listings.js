@@ -1,24 +1,37 @@
-$(document).on('turbolinks:load', function () {
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('#modal1').modal();
-  $('.materialboxed').materialbox();
-
-  tileClick()
-
-  $('#header').css('padding-left', '0px')
 
 
+function set_user_coords(){
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(sendPos);
+  } else {
+      alert("Geolocation is not supported by this browser.");
+  }
+}
+function sendPos(position) {
 
+  $.post({
+    url:'/sessions/location',
+    data: {'latitude':position.coords.latitude, 'longitude':position.coords.longitude},
+    success:function(res){
+      if (res.result == "success"){
+        alert("Successfuly set location: " + String(res.coords))
+        location.reload
+      } else {
+        alert(res.message)
+      }
 
-});
+    }
+  })
 
 
 
 
 var map;
+
 function initMap() {
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
     //
@@ -29,8 +42,6 @@ function initMap() {
 
 }
 
-
- Number($('#hiddenDiv').attr("longitude"))
 
 function renderQueryset(map) {
   $.get({
@@ -129,6 +140,12 @@ function propertyQuery(map, res) {
         })
         $('#modal1').modal('open');
       });
+      google.maps.event.addListener($('#map-search-button'),"click", function(e){
+        e.preventDefault()
+        console.log('yay')
+
+
+      });
 
   }
 }
@@ -148,3 +165,61 @@ function tileClick(){
     $('#modal1').modal('open');
   })
 }
+
+function newLocation(newLat,newLng)
+{ console.log('fdfadsf');//25.7616798, -80.1917902
+	map.panTo({lat: newLat, lng: newLng});
+}
+
+$(document).on('turbolinks:load',function () {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('#modal1').modal();
+  $('.materialboxed').materialbox();
+
+  tileClick()
+
+  $('#header').css('padding-left', '0px')
+
+
+  if ($('#location-check').attr('have-location') == 'false'){
+    console.log("couldn't find location, running set_user_coords")
+    set_user_coords();
+  } else{
+    console.log("location is already present")
+  }
+
+
+  $(document).on("click",'#map-search-button', function(e){
+    e.preventDefault();
+    console.log($("#search-bar-input").serialize());
+    $.post({
+        url: '/listings/partial_search',
+        data: $("#search-bar-input").serialize(),
+        dataType: 'json',
+        success: function(res){
+          console.log(res);
+          newLocation(res[0],res[1]);
+
+//set center
+
+        }
+
+      })
+
+
+  })
+
+
+  //Trying to give the parent div a shadow when the search bar is selected.
+  // $('#search-bar > *')
+  //   .focus(function(){
+  //     console.log("yay")
+  //     $('#search-bar').addClass('.focused')
+  // })
+  // .blur(function(){
+  //     console.log("yay")
+  //     $('#search-bar').removeClass('.focused')
+  // })
+
+
+});
