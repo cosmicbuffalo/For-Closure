@@ -23,8 +23,9 @@
 <div id="logged-in" is-logged-in="<%= session[:user_id] ? 'true' : 'false' %>"> </div>
 
 <div id="location-check" have-location="<%= session[:user_coords] ? 'true' : 'false' %>" class="modal">
-
 </div>
+
+<div id="search-check" have-search="<%= session[:search_coords] ? 'true' : 'false' %>" class="modal"></div>
 
 </body>
 </html>

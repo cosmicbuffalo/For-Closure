@@ -31,6 +31,8 @@ function sendPos(position) {
   function initMap() {
 
 
+
+
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: { lat: Number($('#hiddenDiv').attr("latitude")), lng: Number($('#hiddenDiv').attr("longitude")) }
@@ -72,6 +74,7 @@ function sendPos(position) {
       var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
+        animation: google.maps.Animation.DROP,
         icon: new google.maps.MarkerImage($('#hiddenDiv').attr("marker"),
           null, /* size is determined at runtime */
           null, /* origin is 0,0 */

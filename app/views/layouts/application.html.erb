@@ -3,6 +3,8 @@
 <head>
   <title>ForClosure</title>
 
+
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
@@ -18,8 +20,13 @@
 <div id="user-modal" class="modal collapsible">
   <%= render partial: "partials/user_modal" %>
 </div>
+
+
+
 <div id="location-check" have-location="<%= session[:user_coords] ? 'true' : 'false' %>" class="modal">
 </div>
+
+<div id="search-check" have-search="<%= session[:search_coords] ? 'true' : 'false' %>" class="modal"></div>
 
 
 
