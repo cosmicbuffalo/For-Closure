@@ -1,0 +1,46 @@
+<div id="left-content">
+  <h2>Cool Dashboard</h2>
+  <h2>And Stuff</h2>
+</div>
+
+<div id="right-content">
+  <div id="user-box">
+    <div class="centered">
+      <img src="<%= @user.profile_img_src ? @user.profile_img_src : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png' %>" alt="Profile image">
+      <span class="block">
+        <% unless @user.profile_img_src%>
+          <a href="/user/upload">UPLOAD YOUR PHOTO NOW</a>
+        <% else %>
+          <a href="/user/upload">CHANGE YOUR PHOTO</a>
+        <% end %>
+      </span>
+      <% if @user.first_name && @user.last_name %>
+      <h5><%= @user.first_name.upcase %> <%= @user.last_name.upcase %></h5>
+      <% else %>
+        <h5><%= @user.email.upcase %></h5>
+      <% end %>
+    </div>
+
+    <div class="dashboard-menu-item">
+      <a href="#">EDIT PROFILE</a>
+    </div>
+    <div class="dashboard-menu-item">
+      <a href="#">Listings</a>
+      <span><%= @user.properties.count %></span>
+    </div>
+    <div class="dashboard-menu-item">
+      <a href="#">Contacts</a>
+    </div>
+    <div class="dashboard-menu-item">
+      <a href="#">Reviews</a>
+    </div>
+  </div>
+
+  <div id="dojo-ad-box">
+    <h2 id="dojo-ad-text">Reinvent your career in just 14 weeks</h2>
+    <%= image_tag('ninja.png', id: 'ninja') %>
+    <input class="button" id="dojo-ad-button" type="submit" value="Learn More...">
+  </div>
+</div>
+
+<!-- images[0].image.url -->

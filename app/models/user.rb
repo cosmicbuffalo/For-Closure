@@ -36,4 +36,16 @@ class User < ActiveRecord::Base
   def is_agent_landlord?
     self.agent || self.landlord ? true : false
   end
+
+  def profile_img_src
+
+    if self.images && self.images[0]
+      return self.images[0].image.url
+    else
+      return false
+    end
+
+  end
+
+
 end

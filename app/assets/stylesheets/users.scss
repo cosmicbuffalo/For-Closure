@@ -1,3 +1,98 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div{
+  vertical-align: top;
+}
+
+#left-content{
+  width: 60%;
+  float: left;
+  padding: 150px 40px;
+  text-align: center;
+}
+
+#right-content{
+  float: right;
+  display: inline-block;
+  width: 40%;
+  padding: 100px 20px;
+  min-width: 300px;
+  padding-top: 100px;
+  box-shadow: 2px 2px 10px rgba(0,0,0, 0.4);
+  vertical-align: top;
+
+  .centered{
+    text-align: center;
+  }
+
+  #dojo-ad-box{
+    background-image: url('ad_background.png');
+    text-align: center;
+    margin-top: 26px;
+    padding-top: 20px;
+    padding-bottom: 28px;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.6);
+
+    #dojo-ad-button{
+      width:86%;
+      margin-left: 0px;
+      margin-top:10px;
+      padding:5px 10px 8px 6px;
+      background: linear-gradient(#73cfde,#3ec8de,#02c2df)
+    }
+
+    .button{
+      text-align: center;
+      font-size: 16px;
+      width:90%;
+      color:white;
+      border-width: 0px;
+      padding:8px 10px 10px 9px;
+      border-radius: 6px;
+      margin-left: 6px;
+      margin-bottom: 4px;
+      box-shadow: 2px 3px 1px rgba(0,0,0,0.4);
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    }
+
+    h2{
+      font-weight: 300;
+      color:white;
+      margin:0px;
+    }
+
+
+  }
+
+  #user-box{
+    display: block;
+    vertical-align: top;
+    width: 100%;
+    border-bottom: 2px solid darkgrey;
+    padding-bottom: 50px;
+
+    .block{
+      display: block;
+    }
+
+    img{
+      width: 200px;
+
+    }
+    .dashboard-menu-item{
+      padding: 9px 8px 8px 0px;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      font-size: 1.2em;
+
+      span{
+        float: right;
+        display: inline-block;
+        padding: 3px 9px;
+        text-align: center;
+        background-color: lightgray;
+        border-radius: 5px;
+        position: relative;
+        top: -4px;
+      }
+    }
+
+  }
+}
